@@ -3,7 +3,7 @@ exports.id = 688;
 exports.ids = [688];
 exports.modules = {
 
-/***/ 591:
+/***/ 1591:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -15,15 +15,15 @@ __webpack_require__.d(__webpack_exports__, {
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
 // EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(689);
+var external_react_ = __webpack_require__(6689);
 // EXTERNAL MODULE: ./src/core/chamado/Chamado.ts
-var Chamado = __webpack_require__(266);
+var Chamado = __webpack_require__(6997);
 // EXTERNAL MODULE: ./src/components/Botao.tsx
-var Botao = __webpack_require__(663);
+var Botao = __webpack_require__(5663);
 // EXTERNAL MODULE: ./src/components/Entrada.tsx
-var Entrada = __webpack_require__(197);
+var Entrada = __webpack_require__(2197);
 // EXTERNAL MODULE: ./src/backend/db/ColecaoEquipamemto.ts
-var ColecaoEquipamemto = __webpack_require__(633);
+var ColecaoEquipamemto = __webpack_require__(2633);
 ;// CONCATENATED MODULE: ./src/hooks/useEquipamentos.tsx
 
 
@@ -78,7 +78,7 @@ function Equipamentos(props) {
 };
 
 // EXTERNAL MODULE: ./src/backend/db/ColecaoEquipeSuport.ts
-var ColecaoEquipeSuport = __webpack_require__(523);
+var ColecaoEquipeSuport = __webpack_require__(4523);
 ;// CONCATENATED MODULE: ./src/hooks/useEquipeSuport.tsx
 
 
@@ -133,7 +133,7 @@ function EquipeSuport(props) {
 };
 
 // EXTERNAL MODULE: ./src/backend/db/ColecaoSetor.ts
-var ColecaoSetor = __webpack_require__(680);
+var ColecaoSetor = __webpack_require__(4680);
 ;// CONCATENATED MODULE: ./src/hooks/useSetores.tsx
 
 
@@ -188,7 +188,7 @@ function Setores(props) {
 };
 
 // EXTERNAL MODULE: ./src/backend/db/ColecaoSubSetor.ts
-var ColecaoSubSetor = __webpack_require__(389);
+var ColecaoSubSetor = __webpack_require__(3389);
 ;// CONCATENATED MODULE: ./src/hooks/useSubSetores.tsx
 
 
@@ -313,12 +313,14 @@ function Formulario(props) {
     const { 0: nome , 1: setNome  } = (0,external_react_.useState)(props.chamado?.nome ?? "");
     const { 0: setor , 1: setSetor  } = (0,external_react_.useState)(props.chamado?.setor ?? "");
     const { 0: subSetor , 1: setSubSetor  } = (0,external_react_.useState)(props.chamado?.subSetor ?? "");
+    const { 0: ilha , 1: setIlha  } = (0,external_react_.useState)(props.chamado?.ilha ?? "");
     const { 0: equipamentoComDefeito , 1: setEquipamentoComDefeito  } = (0,external_react_.useState)(props.chamado?.equipamentoComDefeito ?? "");
     const { 0: equipamentoTombo , 1: setEquipamentoTombo  } = (0,external_react_.useState)(props.chamado?.equipamentoTombo ?? "");
     const { 0: descricao , 1: setDescicao  } = (0,external_react_.useState)(props.chamado?.descricao ?? "");
     const { 0: equipeSuport , 1: setEquipeSuport  } = (0,external_react_.useState)(props.chamado?.equipeSuport ?? "");
     const { 0: status , 1: setStatus  } = (0,external_react_.useState)(props.chamado?.status ?? "");
     const { 0: observacao , 1: setObservacao  } = (0,external_react_.useState)(props.chamado?.observacao ?? null);
+    console.log(ilha);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         children: [
             id ? /*#__PURE__*/ jsx_runtime_.jsx(Entrada/* default */.Z, {
@@ -345,14 +347,23 @@ function Formulario(props) {
                 valorMudou: setSetor
             }),
             id ? /*#__PURE__*/ jsx_runtime_.jsx(Entrada/* default */.Z, {
-                texto: "sub-Setor",
+                texto: "subSetor",
                 valor: subSetor.toUpperCase(),
                 somenteLeitura: true
             }) : /*#__PURE__*/ jsx_runtime_.jsx(subSetores, {
-                texto: "Sub-Setor",
+                texto: "SubSetor",
                 setor: setor,
                 valor: subSetor.toUpperCase(),
                 valorMudou: setSubSetor
+            }),
+            id ? /*#__PURE__*/ jsx_runtime_.jsx(Entrada/* default */.Z, {
+                texto: "Ilha N\xba",
+                valor: ilha.toUpperCase(),
+                valorMudou: setIlha
+            }) : /*#__PURE__*/ jsx_runtime_.jsx(Entrada/* default */.Z, {
+                texto: "Ilha N\xba",
+                valor: ilha.toUpperCase(),
+                valorMudou: setIlha
             }),
             id ? /*#__PURE__*/ jsx_runtime_.jsx(Entrada/* default */.Z, {
                 texto: "Equipamento com defeito",
@@ -402,7 +413,7 @@ function Formulario(props) {
                     /*#__PURE__*/ jsx_runtime_.jsx(Botao/* default */.Z, {
                         cor: "blue",
                         className: "mr-2",
-                        onClick: ()=>props.chamadoMudou?.(new Chamado/* default */.Z(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))
+                        onClick: ()=>props.chamadoMudou?.(new Chamado/* default */.Z(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))
                         ,
                         children: id ? "Alterar" : "Criar"
                     }),
@@ -428,7 +439,7 @@ function Formulario(props) {
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Icones__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(376);
+/* harmony import */ var _Icones__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7376);
 
 
 // Componente que criar o modelo de tabela
@@ -437,49 +448,54 @@ function Tabela(props) {
     // Renderiza o cabelcaho nas pagina onde ele é chamado
     function renderizarCabecalho() {
         return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
+            className: "flex-wrap",
             children: [
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "C\xf3digo"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Nome"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Setor"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Subsetor"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
+                    children: "Ilha N\xba"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
+                    className: "text-left p-1 text-xs",
                     children: "Equipamento com Defeito"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Tombo do Equipamento"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Descricao"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Atribuido para"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Status"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "text-left p-3",
+                    className: "text-left p-1 text-xs",
                     children: "Observa\xe7\xe3o"
                 }),
                 exibirAcoes ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
-                    className: "p-4",
+                    className: "p-1 text-xs",
                     children: "A\xe7\xf5es"
                 }) : false
             ]
@@ -489,49 +505,56 @@ function Tabela(props) {
     function renderizarDados() {
         return props.chamados?.map((chamado, i)=>{
             return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", {
-                className: `${i % 2 === 0 ? "bg-gray-300" : "bg-gray-400"}`,
+                className: `flex-wrap ${i % 2 === 0 ? "bg-gray-300" : "bg-gray-400"}`,
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.id
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.nome
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.setor
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.subSetor
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
+                        children: chamado.ilha
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
+                        className: "text-left p-1 text-xs",
                         children: chamado.equipamentoComDefeito
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.equipamentoTombo
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.descricao
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.equipeSuport
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.status
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("td", {
-                        className: "text-left p-2",
+                        className: "text-left p-1 text-xs",
                         children: chamado.observacao
                     }),
-                    exibirAcoes ? renderizarAcoes(chamado) : false
+                    exibirAcoes ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("th", {
+                        className: "p-1 text-xs",
+                        children: renderizarAcoes(chamado)
+                    }) : false
                 ]
             }, chamado.id);
         });
@@ -542,7 +565,7 @@ function Tabela(props) {
         return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("td", {
             className: "flex justify-center",
             children: [
-                props.chamadoSelecionado ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                props.chamadoSelecionado ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                     onClick: ()=>props.chamadoSelecionado?.(chamado)
                     ,
                     className: `
@@ -550,17 +573,27 @@ function Tabela(props) {
                       text-green-600 rounded-full p-2 m-1
                       hover:bg-purple-50
                   `,
-                    children: _Icones__WEBPACK_IMPORTED_MODULE_1__/* .IconeEdicao */ .K
+                    children: [
+                        _Icones__WEBPACK_IMPORTED_MODULE_1__/* .IconeEdicao */ .K,
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                            children: "Editar"
+                        })
+                    ]
                 }) : false,
-                props.chamadoFinalizado ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                props.chamadoFinalizado ? /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("button", {
                     onClick: ()=>props.chamadoFinalizado?.(chamado)
                     ,
                     className: `
                       flex justify-center items-center
-                      text-blue-600 rounded-full p-2 m-1
+                      text-red-600 rounded-full p-2 m-1
                       hover:bg-purple-50
                   `,
-                    children: _Icones__WEBPACK_IMPORTED_MODULE_1__/* .IconeFinalizado */ .z
+                    children: [
+                        _Icones__WEBPACK_IMPORTED_MODULE_1__/* .IconeFinalizado */ .z,
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                            children: "Finalizar"
+                        })
+                    ]
                 }) : false
             ]
         });
@@ -586,7 +619,7 @@ function Tabela(props) {
 
 /***/ }),
 
-/***/ 266:
+/***/ 6997:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -598,6 +631,7 @@ class Chamado {
     #nome;
     #setor;
     #subSetor;
+    #ilha;
     #equipamentoComDefeito;
     #equipamentoTombo;
     #descricao;
@@ -606,11 +640,12 @@ class Chamado {
     #observacao;
     #createAt;
     #updateAt;
-    constructor(aberto, nome, setor, subSetor, equipamentoComDefeito, equipamentoTombo, descricao, equipeSuport, status, observacao, id = null, createAt, updateAt){
+    constructor(aberto, nome, setor, subSetor, ilha, equipamentoComDefeito, equipamentoTombo, descricao, equipeSuport, status, observacao, id = null, createAt, updateAt){
         this.#aberto = aberto;
         this.#nome = nome;
         this.#setor = setor;
         this.#subSetor = subSetor;
+        this.#ilha = ilha;
         this.#equipamentoComDefeito = equipamentoComDefeito;
         this.#equipamentoTombo = equipamentoTombo;
         this.#descricao = descricao;
@@ -622,7 +657,7 @@ class Chamado {
         this.#id = id;
     }
     static vazio() {
-        return new Chamado(null, "", "", "", "", "", "", "", "", "", null, null, null);
+        return new Chamado(null, "", "", "", "", "", "", "", "", "", "", null, null, null);
     }
     get id() {
         return this.#id;
@@ -638,6 +673,9 @@ class Chamado {
     }
     get subSetor() {
         return this.#subSetor;
+    }
+    get ilha() {
+        return this.#ilha;
     }
     get equipamentoComDefeito() {
         return this.#equipamentoComDefeito;

@@ -6,6 +6,8 @@ import Layout from "../components/Layout";
 import Tabela from "../components/Tabela";
 import Chamado from "../core/chamado/Chamado";
 import ChamadoRepositorio from "../core/chamado/ChamadoRepositorio";
+import Image from 'next/image'
+import logo from '../../src/public/logotipoSeec.png'
 
 
 export default function Home() {
@@ -59,15 +61,18 @@ export default function Home() {
   }
 
   return (
+    <>
+      
     <div className={`
     flex justify-center items-center min-h-screen  max-h-full
     bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50
     `}>
-      <Layout titulo="CHAMADOS">
+      <Layout titulo="Chamados">
+        
         {visivel === 'tabela' ? (
           <>
             <div className="flex justify-end">
-              <Botao cor = "blue" className="mb-3"
+              <Botao cor = "blue" className="mb-1"
                 onClick={novoChamado}>
                 Novo chamado
               </Botao>
@@ -90,5 +95,6 @@ export default function Home() {
       </Layout>
         
     </div>
+    </>
   )
 }

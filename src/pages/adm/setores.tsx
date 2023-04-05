@@ -48,7 +48,12 @@ export default function Suport() {
     }
     // Metodo para criar ou atualizar setor
     async function salvarSetor(setor: Setor) {
-        await repo.criarSetor(setor) // cria um novo setor
+        if (setor.id) {
+            await repo.atualizarTelefoneSetor(setor) // atualiza telefone do setor existente
+        } else {
+            await repo.criarSetor(setor) // cria um novo setor
+
+        }
         obterSetoresAtivos()
     }
 
@@ -79,7 +84,7 @@ export default function Suport() {
                 <Layout titulo="Setores Ativos">
                     {visivel === 'tabela' ? (
                         <>
-                            <div className="mt-5 flex justify-end">
+                            <div className="mt-1 flex justify-end">
 
 
                                 <Botao cor="blue" className="mb-3 m-2"
@@ -93,6 +98,7 @@ export default function Suport() {
                             </div>
 
                             <Tabela setores={setores}
+                                setorSelecionado={setorSelecionado}
                                 setorFinalizado={setorFinalizado}
 
                             />

@@ -10,7 +10,7 @@ import SubSetorRepositorio from "../../core/subSetor/SubSetorRepositorio";
 export default function Suport() {
 
 
-    const repo:SubSetorRepositorio = new ColecaoSubSetor()
+    const repo: SubSetorRepositorio = new ColecaoSubSetor()
 
     const [subSetor, setSubSetor] = useState<SubSetor>(SubSetor.vazio())
     const [subSetores, setSubSetores] = useState<SubSetor[]>([])
@@ -48,7 +48,13 @@ export default function Suport() {
     }
     // Metodo para criar ou atualizar subSetor
     async function salvarSubSetor(subSetor: SubSetor) {
-        await repo.criarSubSetor(subSetor) // cria um novo subSetor
+
+        if (subSetor.id) {
+            await repo.atualizarTelefoneSubSetor(subSetor) // atualza telefone do subSetor existente
+        } else {
+            await repo.criarSubSetor(subSetor) // cria um novo subSetor
+           
+        }
         obterSubSetoresAtivos()
     }
 
@@ -74,37 +80,38 @@ export default function Suport() {
         <div className={` flex justify-center items-center min-h-screen  max-h-full
     bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50
     `}>
-                <Layout titulo="Sub Setores Ativos">
-                    {visivel === 'tabela' ? (
-                        <>
-                            <div className="mt-5 flex justify-end">
+            <Layout titulo="SubSetores Ativos">
+                {visivel === 'tabela' ? (
+                    <>
+                        <div className="mt-1 flex justify-end">
 
-                                <Botao cor="blue" className="mb-3 m-2"
-                                    onClick={novoSubSetor}>
-                                    Novo subSetor
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/suport">Suport</a>
-                                </Botao>
+                            <Botao cor="blue" className="mb-3 m-2"
+                                onClick={novoSubSetor}>
+                                Novo subSetor
+                            </Botao>
+                            <Botao cor="blue" className="mb-3 m-2">
+                                <a href="/suport">Suport</a>
+                            </Botao>
 
-                            </div>
+                        </div>
 
-                            <Tabela subSetors={subSetores}
-                                subSetorFinalizado={subSetorFinalizado}
-
-                            />
-                        </>
-                    ) : (
-
-                        <Formulario
-                            subSetor={subSetor}
-                            subSetorMudou={salvarSubSetor}
-                            cancelado={() => setVisivel('tabela')}
+                        <Tabela subSetors={subSetores}
+                            subSetorSelecionado={subSetorSelecionado}
+                            subSetorFinalizado={subSetorFinalizado}
 
                         />
-                    )}
-                </Layout>
-            </div>
-        
+                    </>
+                ) : (
+
+                    <Formulario
+                        subSetor={subSetor}
+                        subSetorMudou={salvarSubSetor}
+                        cancelado={() => setVisivel('tabela')}
+
+                    />
+                )}
+            </Layout>
+        </div>
+
     )
 }

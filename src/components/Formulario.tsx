@@ -26,13 +26,14 @@ export default function Formulario(props: FormularioProps) {
     const [nome, setNome] = useState(props.chamado?.nome ?? '')
     const [setor, setSetor] = useState(props.chamado?.setor ?? '')
     const [subSetor, setSubSetor] = useState(props.chamado?.subSetor ?? '')
+    const [ilha, setIlha] = useState(props.chamado?.ilha ?? '')
     const [equipamentoComDefeito, setEquipamentoComDefeito] = useState(props.chamado?.equipamentoComDefeito ?? '')
     const [equipamentoTombo, setEquipamentoTombo] = useState(props.chamado?.equipamentoTombo ?? '')
     const [descricao, setDescicao] = useState(props.chamado?.descricao ?? '')
     const [equipeSuport, setEquipeSuport] = useState(props.chamado?.equipeSuport ?? '')
     const [status, setStatus] = useState(props.chamado?.status ?? '')
     const [observacao, setObservacao] = useState(props.chamado?.observacao ?? null)
-
+    console.log(ilha)
 
     return (
         <div>
@@ -78,19 +79,34 @@ export default function Formulario(props: FormularioProps) {
 
             {id ? (
                 <Entrada
-                    texto="sub-Setor"
+                    texto="subSetor"
                     valor={subSetor.toUpperCase()}
                     somenteLeitura
                 />
             ) : (
                 <EntradaListaSubSetor
-                    texto="Sub-Setor"
+                    texto="SubSetor"
                     setor={setor}
                     valor={subSetor.toUpperCase()}
                     valorMudou={setSubSetor}
                 />
             )}
 
+            {id ? (
+                <Entrada
+                    texto="Ilha Nº"
+                    valor={ilha.toUpperCase()}
+                    valorMudou={setIlha}
+
+                />
+            ) : (
+                <Entrada
+                    texto="Ilha Nº"
+                    valor={ilha.toUpperCase()}
+                    valorMudou={setIlha}
+
+                />
+            )}
 
             {id ? (
                 <Entrada
@@ -163,9 +179,9 @@ export default function Formulario(props: FormularioProps) {
 
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))}>
+                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))}>
                     {id ? 'Alterar' : 'Criar'}
-
+                
                 </Botao>
                 <Botao cor="blue" onClick={props.cancelado}>
                     Cancelar

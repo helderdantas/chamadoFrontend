@@ -4,6 +4,7 @@ export default class Chamado{
     #nome: string
     #setor: string
     #subSetor: string
+    #ilha: string
     #equipamentoComDefeito:string
     #equipamentoTombo:string
     #descricao: string
@@ -13,11 +14,12 @@ export default class Chamado{
     #createAt:Date
     #updateAt:Date
 
-    constructor(aberto:boolean, nome:string, setor: string, subSetor: string, equipamentoComDefeito:string, equipamentoTombo:string, descricao: string, equipeSuport:string, status:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
+    constructor(aberto:boolean, nome:string, setor: string, subSetor: string, ilha: string, equipamentoComDefeito:string, equipamentoTombo:string, descricao: string, equipeSuport:string, status:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
         this.#aberto=aberto
         this.#nome=nome
         this.#setor=setor
         this.#subSetor=subSetor
+        this.#ilha=ilha
         this.#equipamentoComDefeito=equipamentoComDefeito
         this.#equipamentoTombo=equipamentoTombo
         this.#descricao=descricao
@@ -30,7 +32,7 @@ export default class Chamado{
     }
 
     static vazio(){
-        return new Chamado(null,'','','','','','','','','',null,null,null)
+        return new Chamado(null,'','','','','','','','','','',null,null,null)
     }
 
     get id(){
@@ -51,6 +53,10 @@ export default class Chamado{
 
     get subSetor(){
         return this.#subSetor
+    }
+
+    get ilha(){
+        return this.#ilha
     }
 
     get equipamentoComDefeito(){

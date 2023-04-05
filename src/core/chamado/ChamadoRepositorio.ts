@@ -5,6 +5,7 @@ export default interface ChamadoRepositorio{
     atualizarChamado(chamado: Chamado): Promise<void>
     finalizarChamado(chamado: Chamado): Promise<void>
     obterChamadosAbertos(): Promise<Chamado[]>
+    obterChamadosComStatusAberto():Promise<Chamado[]>
     obterTodosChamados(): Promise<Chamado[]>
     chamadosPorSetor(nome: string, dataInicial:string, dataFinal:string): Promise<{}>
     chamadosPorSuport(nome: string, dataInicial:string, dataFinal:string): Promise<{}>

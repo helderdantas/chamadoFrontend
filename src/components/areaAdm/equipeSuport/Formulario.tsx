@@ -19,6 +19,7 @@ export default function Formulario(props: FormularioProps) {
     const createAt = props.equipeSuport?.createAt
     const updateAt = props.equipeSuport?.updateAt
     const [nome, setNome] = useState(props.equipeSuport?.nome ?? '')
+    const [telefone, setTelefone] = useState(props.equipeSuport?.telefone ?? null)
     return (
         <div>
             {id ? (
@@ -43,10 +44,14 @@ export default function Formulario(props: FormularioProps) {
                     valorMudou={setNome}
                 />
             )}
-
+            <Entrada
+                texto="Telefone"
+                valor={telefone}
+                valorMudou={setTelefone}
+            />
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.equipeSuportMudou?.(new EquipeSuport(ativo, nome.toUpperCase(), id, createAt, updateAt))}>
+                    onClick={() => props.equipeSuportMudou?.(new EquipeSuport(ativo, nome.toUpperCase(), telefone , id, createAt, updateAt))}>
                     {id ? 'Alterar' : 'Criar'}
 
                 </Botao>

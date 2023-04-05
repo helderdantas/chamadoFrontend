@@ -1,5 +1,5 @@
 import SubSetor from "../../../core/subSetor/SubSetor"
-import {IconeFinalizado } from "../../Icones"
+import {IconeEdicao, IconeFinalizado } from "../../Icones"
 
 interface TabelaProps {
     subSetors: SubSetor[]
@@ -20,7 +20,8 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-3">Código</th>
                 <th className="text-left p-3">Nome</th>
                 <th className="text-left p-3">Setor</th>
-                {exibirAcoes ? <th className="p-4">Inativar</th> : false}
+                <th className="text-left p-3">Telefone</th>
+                {exibirAcoes ? <th className="p-4">Ações</th> : false}
 
             </tr>
 
@@ -34,6 +35,7 @@ export default function Tabela(props: TabelaProps) {
                     <td className="text-left p-2">{subSetor.id}</td>
                     <td className="text-left p-2">{subSetor.nome}</td>
                     <td className="text-left p-2">{subSetor.nomeSetor}</td>
+                    <td className="text-left p-2">{subSetor.telefone}</td>
                     {exibirAcoes ? renderizarAcoes(subSetor) : false}
                 </tr>
             )
@@ -47,16 +49,29 @@ export default function Tabela(props: TabelaProps) {
         // <Link href="/suport/editar">editar</Link> - substituir no lugar do botao
         return (
             <td className="flex justify-center">
-                {props.subSetorFinalizado ? (
-                    <button  children={IconeFinalizado} onClick={() => props.subSetorFinalizado?.(subSetor)} className={`
+              {props.subSetorSelecionado ? (
+                    <button onClick={() => props.subSetorSelecionado?.(subSetor)} className={`
                       flex justify-center items-center
-                      text-blue-600 rounded-full p-2 m-1
+                      text-green-600 rounded-full p-2 m-1
                       hover:bg-purple-50
-                  `}/> 
-                   
+                  `}>
+                    {IconeEdicao}
+                    <>Editar</>
+                    </button>
                 ) : false
                 }
-             
+
+                {props.subSetorFinalizado ? (
+                    <button onClick={() => props.subSetorFinalizado?.(subSetor)} className={`
+                      flex justify-center items-center
+                      text-yellow-600 rounded-full p-2 m-1
+                      hover:bg-purple-50
+                  `}>
+                        {IconeFinalizado}
+                        <>Inativar</>
+                    </button>
+                ) : false
+                }
             </td>
         )
     }

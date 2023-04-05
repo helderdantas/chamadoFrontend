@@ -3,20 +3,22 @@ export default class SubSetor {
     #ativo: boolean
     #nome: string
     #nomeSetor: string
+    #telefone: string
     #createAt: Date
     #updateAt: Date
 
-    constructor(ativo: boolean, nome: string, nomeSetor:string, id: string = null, createAt: Date, updateAt: Date) {
+    constructor(ativo: boolean, nome: string, nomeSetor: string, telefone: string = null, id: string = null, createAt: Date, updateAt: Date) {
         this.#ativo = ativo
         this.#nome = nome
         this.#nomeSetor = nomeSetor
+        this.#telefone = telefone
         this.#createAt = createAt
         this.#updateAt = updateAt
         this.#id = id
     }
 
     static vazio() {
-        return new SubSetor(null,'','', null, null, null)
+        return new SubSetor(null,'','', null , null, null, null)
     }
 
     get id() {
@@ -33,6 +35,10 @@ export default class SubSetor {
 
     get nomeSetor() {
         return this.#nomeSetor
+    }
+
+    get telefone(){
+        return this.#telefone
     }
 
     get createAt() {

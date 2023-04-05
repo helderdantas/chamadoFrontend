@@ -2,19 +2,21 @@ export default class Setor {
     #id: string
     #ativo: boolean
     #nome: string
+    #telefone:string
     #createAt: Date
     #updateAt: Date
 
-    constructor(ativo: boolean, nome: string, id: string = null, createAt: Date, updateAt: Date) {
+    constructor(ativo: boolean, nome: string, telefone: string = null, id: string = null, createAt: Date, updateAt: Date) {
         this.#ativo = ativo
         this.#nome = nome
+        this.#telefone = telefone
         this.#createAt = createAt
         this.#updateAt = updateAt
         this.#id = id
     }
 
     static vazio() {
-        return new Setor(null, '', null, null, null)
+        return new Setor(null, '', null, null, null, null)
     }
 
     get id() {
@@ -27,6 +29,10 @@ export default class Setor {
 
     get nome() {
         return this.#nome
+    }
+
+    get telefone(){
+        return this.#telefone
     }
 
     get createAt() {

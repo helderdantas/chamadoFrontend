@@ -13,6 +13,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                 nome: chamado.nome,
                 setor: chamado.setor,
                 subSetor: chamado.subSetor,
+                ilha: chamado.ilha,                              
                 equipamentoComDefeito: chamado.equipamentoComDefeito,
                 equipamentoTombo:chamado.equipamentoTombo,
                 descricao: chamado.descricao,
@@ -21,7 +22,6 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                 observacao: chamado.observacao,
 
             };
-            
             var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarChamado/`, body);
             console.log(response)
             var data = response.data
@@ -29,6 +29,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
         } catch (error) {
             console.log(error)
         }
+        
     }
 
     async atualizarChamado(chamado: Chamado): Promise<void> {
@@ -42,11 +43,12 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                         equipamentoComDefeito: chamado.equipamentoComDefeito,
                         equipeSuport: chamado.equipeSuport,
                         status: chamado.status,
+                        ilha: chamado.ilha,
                         observacao: chamado.observacao
                     }
                 };
                 const response = await axios(config);
-                console.log('atualizado com sucesso')
+                console.log('chamado atualizado com sucesso')
 
             } catch (error) {
                 console.log(error)
@@ -90,6 +92,20 @@ export default class ColecaoChamado implements ChamadoRepositorio {
 
         }
     }
+
+    async obterChamadosComStatusAberto(): Promise<Chamado[]> {
+        try {
+
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarChamadosComStatusAberto`)
+            return response.data
+
+        } catch (error) {
+            return error
+
+        }
+    }
+
+
 
     async obterTodosChamados(): Promise<Chamado[]> {
         try {

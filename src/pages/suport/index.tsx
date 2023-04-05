@@ -7,11 +7,27 @@ import Tabela from "../../components/Tabela";
 import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
 
+
 export default function Suport() {
+
+
+    function play(valor: number) {
+        let context = new AudioContext(),
+            oscillator = context.createOscillator();
+        oscillator.type = 'sine';
+        oscillator.connect(context.destination);
+        if (valor === 0) {
+            oscillator.start()
+        }
+        if (valor === 1) {
+            oscillator.stop()
+        }
+    }
 
     const repo: ChamadoRepositorio = new ColecaoChamado()
     const [chamado, setChamado] = useState<Chamado>(Chamado.vazio())
     const [chamados, setChamados] = useState<Chamado[]>([])
+    const [chamadosAberto, setChamadosAberto] = useState<Chamado[]>([])
     const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
 
 
@@ -19,7 +35,6 @@ export default function Suport() {
     useEffect(() => {
         setInterval(obterChamadosAbertos, 30000);
     }, [])
-
 
     function listItems(items, pageActual, limitItems) {
         let result = [];
@@ -32,8 +47,13 @@ export default function Suport() {
         repo.obterChamadosAbertos().then(chamados => {
             setChamados(chamados)
             setVisivel('tabela')
+        });
+
+        repo.obterChamadosComStatusAberto().then(chamadosAbertos => {
+            setChamadosAberto(chamadosAbertos)
 
         })
+
     }
 
     // Metodo para criar ou atualizar chamado
@@ -74,7 +94,7 @@ export default function Suport() {
                 <Layout titulo="Chamados abertos">
                     {visivel === 'tabela' ? (
                         <>
-                            <div className="mt-5 flex justify-end">
+                            <div className="mt-1 flex justify-end">
 
                                 <Botao cor="blue" className="mb-3 m-2">
                                     <a href="/suport/edicao">Edição dos Chamados</a>
@@ -86,7 +106,7 @@ export default function Suport() {
                                     <a href="/adm/setores" >Listar Setores</a>
                                 </Botao>
                                 <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/adm/subSetores">Listar Sub-Setores</a>
+                                    <a href="/adm/subSetores">Listar SubSetores</a>
                                 </Botao>
                                 <Botao cor="blue" className="mb-3 m-2">
                                     <a href="/adm/equipamentos">Listar tipos de Equipamentos</a>
@@ -99,7 +119,7 @@ export default function Suport() {
                             </div>
 
                             <Tabela chamados={chamados}
-                          
+
                             />
                         </>
                     ) : (
@@ -113,7 +133,7 @@ export default function Suport() {
                     )}
                 </Layout>
             </div>
-           
+
         </>
     )
 }

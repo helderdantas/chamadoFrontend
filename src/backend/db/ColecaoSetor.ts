@@ -4,6 +4,9 @@ const axios = require('axios');
 
 
 export default class ColecaoSetor implements SetorRepositorio {
+    atualizarTelefone(setor: Setor): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
 
     async criarSetor(setor: Setor): Promise<Setor> {
         try {
@@ -11,6 +14,7 @@ export default class ColecaoSetor implements SetorRepositorio {
             let body = {
                 ativo: true,
                 nome: setor.nome,
+                telefone: setor.telefone,
             };
             console.log('entrei')
             var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarSetor/`, body);
@@ -40,6 +44,30 @@ export default class ColecaoSetor implements SetorRepositorio {
         }
 
     }
+
+    async atualizarTelefoneSetor(setor: Setor): Promise<void> {
+        try {
+            try {
+                let config = {
+                    method: 'put',
+                    url: `${process.env.NEXT_PUBLIC_URL}updateTelefoneSetor/` + setor.id,
+                    data: {
+                        telefone: setor.telefone
+                    }
+                };
+                const response = await axios(config);
+                console.log('telefone atualizado com sucesso')
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     async obterSetoresAtivos(): Promise<Setor[]> {
         try {

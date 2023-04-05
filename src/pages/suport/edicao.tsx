@@ -26,10 +26,6 @@ export default function Suport() {
     useEffect(obterChamadosAbertos, [])
 
 
-  
-
-
-
     // Metodo que exibe na tabela todos os chamados abertos
     function obterChamadosAbertos() {
         repo.obterChamadosAbertos().then(chamados => {
@@ -88,28 +84,27 @@ export default function Suport() {
     flex justify-center items-center min-h-screen  max-h-full
     bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50
     `}>
-                <Layout titulo="Chamados abertos">
+                <Layout  titulo="Chamados abertos">
                     {visivel === 'tabela' ? (
                         <>
-                            <div className="mt-5 flex justify-end">
+                            <div className="mt-1 flex justify-end">
 
-
-                                <Botao cor="blue" className="mb-3 m-2"
+                                <Botao cor="blue" className="mb-1 m-2"
                                     onClick={novoChamado}>
                                     Novo chamado
                                 </Botao>
 
-                                <Botao cor="blue" className="mb-3 m-2">
+                                <Botao cor="blue" className="mb-1 m-2">
                                     <a href="/suport">Suport</a>
                                 </Botao>
 
                             </div>
-
+                            <div className="flex justify-center">
                             <Tabela chamados={chamados}
                                 chamadoSelecionado={chamadoSelecionado}
                                 chamadoFinalizado={chamadoFinalizado}
-
                             />
+                            </div>
                         </>
                     ) : (
 
@@ -124,7 +119,7 @@ export default function Suport() {
 
 
             </div>
-            
+
         </>
     )
 }

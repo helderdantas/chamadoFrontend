@@ -4,16 +4,16 @@ const axios = require('axios');
 
 
 export default class ColecaoSubSetor implements SubSetorRepositorio {
-
+   
     async criarSubSetor(subSetor: SubSetor): Promise<SubSetor> {
         try {
 
             let body = {
                 ativo: true,
                 nome: subSetor.nome,
-                nomeSetor:subSetor.nomeSetor
+                nomeSetor:subSetor.nomeSetor,
+                telefone:subSetor.telefone,
             };
-            console.log('entrei')
             var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarSubSetor/`, body);
             console.log(response)
             var data = response.data
@@ -41,6 +41,31 @@ export default class ColecaoSubSetor implements SubSetorRepositorio {
         }
 
     }
+
+
+    async atualizarTelefoneSubSetor(subSetor: SubSetor): Promise<void> {
+        try {
+            try {
+                let config = {
+                    method: 'put',
+                    url: `${process.env.NEXT_PUBLIC_URL}updateTelefoneSubSetor/` + subSetor.id,
+                    data: {
+                        telefone: subSetor.telefone
+                    }
+                };
+                const response = await axios(config);
+                console.log('telefone atualizado com sucesso')
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     async obterSubSetoresAtivos(): Promise<SubSetor[]> {
         try {

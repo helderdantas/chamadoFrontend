@@ -79,7 +79,7 @@ export default function Suport() {
                 <Layout titulo="Equipamentos Ativos">
                     {visivel === 'tabela' ? (
                         <>
-                            <div className="mt-5 flex justify-end">
+                            <div className="mt-1 flex justify-end">
 
 
                                 <Botao cor="blue" className="mb-3 m-2"

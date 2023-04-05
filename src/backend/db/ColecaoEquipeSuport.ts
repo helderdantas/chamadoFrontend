@@ -4,6 +4,9 @@ const axios = require('axios');
 
 
 export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
+    atualizarTelefone(EquipeSuport: EquipeSuport): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
 
     async criarEquipeSuport(equipeSuport: EquipeSuport): Promise<EquipeSuport> {
         try {
@@ -11,6 +14,7 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
             let body = {
                 ativo: true,
                 nome: equipeSuport.nome,
+                telefone: equipeSuport.telefone,
             };
             console.log('entrei')
             var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarEquipeSuport/`, body);
@@ -40,6 +44,32 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
         }
 
     }
+
+
+    async atualizarTelefoneEquipeSuport(equipeSuport: EquipeSuport): Promise<void> {
+        try {
+            try {
+                let config = {
+                    method: 'put',
+                    url: `${process.env.NEXT_PUBLIC_URL}updateTelefoneEquipeSuport/` + equipeSuport.id,
+                    data: {
+                        telefone: equipeSuport.telefone
+                    }
+                };
+                const response = await axios(config);
+                console.log('telefone atualizado com sucesso')
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
 
     async obterEquipeSuportAtivos(): Promise<EquipeSuport[]> {
         try {

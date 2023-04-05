@@ -20,6 +20,7 @@ export default function Formulario(props: FormularioProps) {
     const updateAt = props.subSetor?.updateAt
     const [nome, setNome] = useState(props.subSetor?.nome ?? '')
     const [nomeSetor, setNomeSetor] = useState(props.subSetor?.nomeSetor ?? '')
+    const [telefone, setTelefone] = useState(props.subSetor?.telefone ?? null)
     return (
         <div>
             {id ? (
@@ -44,7 +45,7 @@ export default function Formulario(props: FormularioProps) {
                     valorMudou={setNome}
                 />
             )}
-             {id ? (
+            {id ? (
                 <Entrada
                     texto="Setor"
                     valor={nomeSetor.toUpperCase()}
@@ -59,9 +60,15 @@ export default function Formulario(props: FormularioProps) {
                 />
             )}
 
+            <Entrada
+                texto="Telefone"
+                valor={telefone}
+                valorMudou={setTelefone}
+            />
+
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.subSetorMudou?.(new SubSetor(ativo, nome.toUpperCase(), nomeSetor.toUpperCase(), id, createAt, updateAt))}>
+                    onClick={() => props.subSetorMudou?.(new SubSetor(ativo, nome.toUpperCase(), nomeSetor.toUpperCase(), telefone, id, createAt, updateAt))}>
                     {id ? 'Alterar' : 'Criar'}
 
                 </Botao>

@@ -1,5 +1,5 @@
 import EquipeSuport from "../../../core/equipeSuport/EquipeSuport"
-import {IconeFinalizado } from "../../Icones"
+import {IconeEdicao, IconeFinalizado } from "../../Icones"
 
 interface TabelaProps {
     equipeSuports: EquipeSuport[]
@@ -19,7 +19,8 @@ export default function Tabela(props: TabelaProps) {
             <tr>
                 <th className="text-left p-3">Código</th>
                 <th className="text-left p-3">Nome</th>
-                {exibirAcoes ? <th className="p-4">Inativar</th> : false}
+                <th className="text-left p-3">Telefone</th>
+                {exibirAcoes ? <th className="p-4">Ações</th> : false}
 
             </tr>
 
@@ -32,6 +33,7 @@ export default function Tabela(props: TabelaProps) {
                 <tr key={equipeSuport.id} className={`${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
                     <td className="text-left p-2">{equipeSuport.id}</td>
                     <td className="text-left p-2">{equipeSuport.nome}</td>
+                    <td className="text-left p-2">{equipeSuport.telefone}</td>
                     {exibirAcoes ? renderizarAcoes(equipeSuport) : false}
                 </tr>
             )
@@ -45,13 +47,29 @@ export default function Tabela(props: TabelaProps) {
         // <Link href="/suport/editar">editar</Link> - substituir no lugar do botao
         return (
             <td className="flex justify-center">
-                {props.equipeSuportFinalizado ? (
-                    <button  children={IconeFinalizado} onClick={() => props.equipeSuportFinalizado?.(equipeSuport)} className={`
+              {props.equipeSuportSelecionado ? (
+                    <button onClick={() => props.equipeSuportSelecionado?.(equipeSuport)} className={`
                       flex justify-center items-center
-                      text-blue-600 rounded-full p-2 m-1
+                      text-green-600 rounded-full p-2 m-1
                       hover:bg-purple-50
-                  `}/> 
-                   
+                  `}>
+                    {IconeEdicao}
+                    <>Editar</>
+                    </button>
+                ) : false
+                }
+
+                {props.equipeSuportFinalizado ? (
+                    <button onClick={() => props.equipeSuportFinalizado?.(equipeSuport)} className={`
+                      flex justify-center items-center
+                      text-yellow-600 rounded-full p-2 m-1
+                      hover:bg-purple-50
+                  `}>
+                        {IconeFinalizado}
+                        <>Inativar</>
+                    </button>
+                    
+                    
                 ) : false
                 }
              

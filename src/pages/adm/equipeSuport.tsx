@@ -10,7 +10,7 @@ import EquipeSuportRepositorio from "../../core/equipeSuport/EquipeSuportReposit
 export default function Suport() {
 
 
-    const repo:EquipeSuportRepositorio = new ColecaoEquipeSuport()
+    const repo: EquipeSuportRepositorio = new ColecaoEquipeSuport()
 
     const [equipeSuport, setEquipeSuport] = useState<EquipeSuport>(EquipeSuport.vazio())
     const [equipeSuports, setEquipeSuports] = useState<EquipeSuport[]>([])
@@ -48,7 +48,11 @@ export default function Suport() {
     }
     // Metodo para criar ou atualizar equipeSuport
     async function salvarEquipeSuport(equipeSuport: EquipeSuport) {
-        await repo.criarEquipeSuport(equipeSuport) // cria um novo equipeSuport
+        if (equipeSuport.id) {
+            await repo.atualizarTelefoneEquipeSuport(equipeSuport) // atualizar telefone do suport
+        } else {
+            await repo.criarEquipeSuport(equipeSuport) // cria um novo equipeSuport
+        }
         obterEquipeSuportAtivos()
     }
 
@@ -79,7 +83,7 @@ export default function Suport() {
                 <Layout titulo="Equipe de Suport Ativos">
                     {visivel === 'tabela' ? (
                         <>
-                            <div className="mt-5 flex justify-end">
+                            <div className="mt-1 flex justify-end">
 
 
                                 <Botao cor="blue" className="mb-3 m-2"
@@ -93,6 +97,7 @@ export default function Suport() {
                             </div>
 
                             <Tabela equipeSuports={equipeSuports}
+                                equipeSuportSelecionado={equipeSuportSelecionado}
                                 equipeSuportFinalizado={equipeSuportFinalizado}
 
                             />

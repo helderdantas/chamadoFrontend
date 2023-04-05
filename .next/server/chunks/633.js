@@ -3,13 +3,13 @@ exports.id = 633;
 exports.ids = [633];
 exports.modules = {
 
-/***/ 633:
+/***/ 2633:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (/* binding */ ColecaoEquipamento)
 /* harmony export */ });
-const axios = __webpack_require__(167);
+const axios = __webpack_require__(2167);
 class ColecaoEquipamento {
     async criarEquipamento(equipamento) {
         try {
@@ -18,7 +18,7 @@ class ColecaoEquipamento {
                 nome: equipamento.nome
             };
             console.log("entrei");
-            var response = await axios.post(`${"http://localhost:3030/"}criarEquipamento/`, body);
+            var response = await axios.post(`${"http://10.26.0.73:3032/"}criarEquipamento/`, body);
             console.log(response);
             var data = response.data;
             return data;
@@ -31,7 +31,7 @@ class ColecaoEquipamento {
             if (equipamento.id) {
                 let config = {
                     method: "put",
-                    url: `${"http://localhost:3030/"}updateCampoAtivoEquipamento/` + equipamento.id,
+                    url: `${"http://10.26.0.73:3032/"}updateCampoAtivoEquipamento/` + equipamento.id,
                     headers: {}
                 };
                 await axios(config);
@@ -43,7 +43,7 @@ class ColecaoEquipamento {
     }
     async obterEquipamentosAtivos() {
         try {
-            let response = await axios.get(`${"http://localhost:3030/"}listarEquipamentosAtivos`);
+            let response = await axios.get(`${"http://10.26.0.73:3032/"}listarEquipamentosAtivos`);
             return response.data;
         } catch (error) {
             return error;
@@ -51,7 +51,7 @@ class ColecaoEquipamento {
     }
     async obterTodosEquipamentos() {
         try {
-            let response = await axios.get(`${"http://localhost:3030/"}listarTodosEquipamentos`);
+            let response = await axios.get(`${"http://10.26.0.73:3032/"}listarTodosEquipamentos`);
             return response.data;
         } catch (error) {
             return error;
