@@ -3,7 +3,7 @@ exports.id = 798;
 exports.ids = [798];
 exports.modules = {
 
-/***/ 8798:
+/***/ 798:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -32,7 +32,7 @@ function Titulo(props) {
 };
 
 // EXTERNAL MODULE: ./node_modules/next/image.js
-var next_image = __webpack_require__(5675);
+var next_image = __webpack_require__(675);
 var image_default = /*#__PURE__*/__webpack_require__.n(next_image);
 ;// CONCATENATED MODULE: ./src/public/logotipoSeec.png
 /* harmony default export */ const logotipoSeec = ({"src":"/_next/static/media/logotipoSeec.06cb5494.png","height":120,"width":145,"blurDataURL":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAYAAAA1WQxeAAAA8klEQVR4nAHnABj/ASOBPigP/ARPzoO+s9jW2iEKCQ7qHiEY3DVmPFT2KgSbAR99OMMCAQs8eCc69wsDH94NCAT15+vaCnDUvywg+PmFARt/QK408d8+GSSTExcUGQDu+AAA9PHZAL7gcQAF/yyLAQAA/wCUXgFwbCfNfKMyBhPC6QT8m+Pn93rhQrCG8FWDAZhsOQAb9+xnhi87hvUB2RIHBQwAFPMX7Wm/pXLfGySiAVO6OAsr2AKc6wXvCcwBFyr2/v35Rv7u4Qz8D/KDb8ZbAanQDQfq3S5Q7+4KKhAL7AH0+gUC//wQ+w8T89FFRseyOytlYFywrzIAAAAASUVORK5CYII="});
@@ -56,7 +56,7 @@ function Layout(props) {
     return(//configuracao do tamanho do layout w-8/9
     /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         className: `
-            flex flex-col w-10/12
+            flex flex-col w-99
             bg-gray-200
             text-gray-800 
             rounded-md

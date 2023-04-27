@@ -7,6 +7,9 @@ import EntradaListaSuporte from "./EntradaListaEquipeSuport";
 import EntradaListaSetor from "./EntradaListaSetor";
 import EntradaListaSubSetor from "./EntradaListaSubSetor";
 import EntradaListaStatus from "./EntradaListaStatus";
+import ColecaoControle from "../backend/db/ColecaoControle";
+import Controle from "../core/controle/Controle";
+import ControleRepositorio from "../core/controle/ControleRepositorio";
 
 
 interface FormularioProps {
@@ -19,6 +22,8 @@ interface FormularioProps {
 
 // Componete que criar o modelo de formulario
 export default function Formulario(props: FormularioProps) {
+
+    const repo: ControleRepositorio = new ColecaoControle()
     const id = props.chamado?.id
     const aberto = props.chamado?.aberto
     const createAt = props.chamado?.createAt
@@ -27,13 +32,56 @@ export default function Formulario(props: FormularioProps) {
     const [setor, setSetor] = useState(props.chamado?.setor ?? '')
     const [subSetor, setSubSetor] = useState(props.chamado?.subSetor ?? '')
     const [ilha, setIlha] = useState(props.chamado?.ilha ?? '')
+    const [baia, setBaia] = useState(props.chamado?.baia ?? '')
+    const [cpuTombo, setCpuTombo] = useState(props.chamado?.cputombo ?? '')
+    const [cpuNumeroSerie, setCpuNumeroSerie] = useState(props.chamado?.cpunumeroserie ?? '')
+    const [monitor1Tombo, setMonitor1Tombo] = useState(props.chamado?.monitor1tombo ?? '')
+    const [monitor1NumeroSerie, setMonitor1NumeroSerie] = useState(props.chamado?.monitor1numeroserie ?? '')
+    const [monitor2Tombo, setMonitor2Tombo] = useState(props.chamado?.monitor2tombo ?? '')
+    const [monitor2NumeroSerie, setMonitor2NumeroSerie] = useState(props.chamado?.monitor2numeroserie ?? '')
+    const [impressora, setImpressora] = useState(props.chamado?.impressora ?? '')
+    const [telefone, setTelefone] = useState(props.chamado?.telefone ?? '')
     const [equipamentoComDefeito, setEquipamentoComDefeito] = useState(props.chamado?.equipamentoComDefeito ?? '')
     const [equipamentoTombo, setEquipamentoTombo] = useState(props.chamado?.equipamentoTombo ?? '')
     const [descricao, setDescicao] = useState(props.chamado?.descricao ?? '')
     const [equipeSuport, setEquipeSuport] = useState(props.chamado?.equipeSuport ?? '')
     const [status, setStatus] = useState(props.chamado?.status ?? '')
     const [observacao, setObservacao] = useState(props.chamado?.observacao ?? null)
-    console.log(ilha)
+    const [controle, setControle] = useState<Controle>(Controle.vazio())
+    const [qrcode, setQrcode] = useState('')
+
+
+    async function preencherFormularios() {
+
+        try {
+            if (qrcode === '') {
+                console.log('digite o codigo')
+            } else {
+                await repo.obterControleControlePorId(qrcode).then(controle => {
+                    setControle(controle)
+                })
+                setSetor(controle.setor)
+                setSubSetor(controle.subsetor)
+                setIlha(controle.ilha)
+                setBaia(controle.baia)
+                setCpuTombo(controle.cputombo)
+                setCpuNumeroSerie(controle.cpunumeroserie)
+                setMonitor1Tombo(controle.monitor1tombo)
+                setMonitor1NumeroSerie(controle.monitor1numeroserie)
+                setMonitor2Tombo(controle.monitor2tombo)
+                setMonitor2NumeroSerie(controle.monitor2numeroserie)
+                setImpressora(controle.impressora)
+                //setTelefone(controle.telefone)
+            }
+        } catch (error) {
+            console.log(error)
+
+
+        }
+
+
+    }
+
 
     return (
         <div>
@@ -61,6 +109,21 @@ export default function Formulario(props: FormularioProps) {
 
             )}
 
+            {!id ? (
+                <div>
+                    <Entrada
+                        texto="QRCODE"
+                        valor={qrcode}
+                        valorMudou={setQrcode}
+                    />
+                    <Botao cor="blue" onClick={preencherFormularios}>
+                        Buscar
+                    </Botao>
+                </div>
+
+            ) : false}
+
+
             {id ? (
                 <Entrada
                     texto="Setor"
@@ -69,12 +132,15 @@ export default function Formulario(props: FormularioProps) {
                 />
 
             ) : (
-                <EntradaListaSetor
+                <Entrada
                     texto="Setor"
                     valor={setor.toUpperCase()}
                     valorMudou={setSetor}
+
                 />
             )}
+
+
 
 
             {id ? (
@@ -84,11 +150,11 @@ export default function Formulario(props: FormularioProps) {
                     somenteLeitura
                 />
             ) : (
-                <EntradaListaSubSetor
-                    texto="SubSetor"
-                    setor={setor}
+                <Entrada
+                    texto="subSetor"
                     valor={subSetor.toUpperCase()}
                     valorMudou={setSubSetor}
+
                 />
             )}
 
@@ -97,6 +163,8 @@ export default function Formulario(props: FormularioProps) {
                     texto="Ilha Nº"
                     valor={ilha.toUpperCase()}
                     valorMudou={setIlha}
+                    somenteLeitura
+
 
                 />
             ) : (
@@ -110,20 +178,156 @@ export default function Formulario(props: FormularioProps) {
 
             {id ? (
                 <Entrada
-                    texto="Equipamento com defeito"
-                    valor={equipamentoComDefeito.toUpperCase()}
+                    texto="Baia Nº"
+                    valor={baia.toUpperCase()}
+                    valorMudou={setBaia}
                     somenteLeitura
 
                 />
             ) : (
-                <EntradaListaEquipamento
-                    texto="Equipamento com defeito"
-                    valor={equipamentoComDefeito.toUpperCase()}
-                    valorMudou={setEquipamentoComDefeito}
-
+                <Entrada
+                    texto="Est. Trabalho"
+                    valor={baia.toUpperCase()}
+                    valorMudou={setBaia}
 
                 />
             )}
+
+            {id ? (
+                <Entrada
+                    texto="CPU-T"
+                    valor={cpuTombo.toUpperCase()}
+                    valorMudou={setCpuTombo}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="CPU-T"
+                    valor={cpuTombo.toUpperCase()}
+                    valorMudou={setCpuTombo}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="CPU-NS"
+                    valor={cpuNumeroSerie.toUpperCase()}
+                    valorMudou={setCpuNumeroSerie}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="CPU-NS"
+                    valor={cpuNumeroSerie.toUpperCase()}
+                    valorMudou={setCpuNumeroSerie}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Monitor1-T"
+                    valor={monitor1Tombo.toUpperCase()}
+                    valorMudou={setMonitor1Tombo}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Monitor1-T"
+                    valor={monitor1Tombo.toUpperCase()}
+                    valorMudou={setMonitor1Tombo}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Monitor1-NS"
+                    valor={monitor1NumeroSerie.toUpperCase()}
+                    valorMudou={setMonitor1NumeroSerie}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Monitor1-NS"
+                    valor={monitor1NumeroSerie.toUpperCase()}
+                    valorMudou={setMonitor1NumeroSerie}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Monitor2-T"
+                    valor={monitor2Tombo.toUpperCase()}
+                    valorMudou={setMonitor2Tombo}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Monitor2-T"
+                    valor={monitor2Tombo.toUpperCase()}
+                    valorMudou={setMonitor2Tombo}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Monitor2-NS"
+                    valor={monitor2NumeroSerie.toUpperCase()}
+                    valorMudou={setMonitor2NumeroSerie}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Monitor2-NS"
+                    valor={monitor2NumeroSerie.toUpperCase()}
+                    valorMudou={setMonitor2NumeroSerie}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Impressora"
+                    valor={impressora.toUpperCase()}
+                    valorMudou={setImpressora}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Impressora"
+                    valor={impressora.toUpperCase()}
+                    valorMudou={setImpressora}
+
+                />
+            )}
+            {id ? (
+                <Entrada
+                    texto="Telefone"
+                    valor={telefone.toUpperCase()}
+                    valorMudou={setTelefone}
+                    somenteLeitura
+
+                />
+            ) : (
+                <Entrada
+                    texto="Telefone"
+                    valor={telefone.toUpperCase()}
+                    valorMudou={setTelefone}
+
+                />
+            )}
+
+            <EntradaListaEquipamento
+                texto="Equipamento com defeito"
+                valor={equipamentoComDefeito.toUpperCase()}
+                valorMudou={setEquipamentoComDefeito}
+
+            />
             <Entrada
                 texto="Tombo do Equipamento"
                 valor={equipamentoTombo.toUpperCase()}
@@ -179,9 +383,9 @@ export default function Formulario(props: FormularioProps) {
 
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))}>
+                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), baia.toUpperCase(), cpuNumeroSerie.toUpperCase(), cpuTombo.toUpperCase(), monitor1Tombo.toUpperCase(), monitor1NumeroSerie.toUpperCase(), monitor2Tombo.toUpperCase(), monitor2NumeroSerie.toUpperCase(), impressora.toUpperCase(), telefone.toUpperCase(), equipamentoComDefeito.toUpperCase(), equipamentoTombo.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))}>
                     {id ? 'Alterar' : 'Criar'}
-                
+
                 </Botao>
                 <Botao cor="blue" onClick={props.cancelado}>
                     Cancelar

@@ -3,7 +3,7 @@ exports.id = 146;
 exports.ids = [146];
 exports.modules = {
 
-/***/ 5663:
+/***/ 663:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -18,7 +18,7 @@ function Botao(props) {
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
         onClick: props.onClick,
         className: `bg-blue-900
-         text-white px-2 py-2 rounded-md
+         text-white px-2 py-2 rounded-md  hover:bg-blue-600
          ${props.className} 
         `,
         children: props.children
@@ -28,7 +28,7 @@ function Botao(props) {
 
 /***/ }),
 
-/***/ 2197:
+/***/ 197:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
@@ -65,7 +65,7 @@ function Formulario(props) {
 
 /***/ }),
 
-/***/ 7376:
+/***/ 376:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {

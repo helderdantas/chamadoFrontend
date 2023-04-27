@@ -22,7 +22,7 @@ export default function Layout(props:LayoutProps) {
     return (
         //configuracao do tamanho do layout w-8/9
         <div className={`
-            flex flex-col w-10/12
+            flex flex-col w-99
             bg-gray-200
             text-gray-800 
             rounded-md

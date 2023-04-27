@@ -2,7 +2,7 @@ exports.id = 675;
 exports.ids = [675];
 exports.modules = {
 
-/***/ 9749:
+/***/ 749:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
@@ -11,13 +11,13 @@ Object.defineProperty(exports, "__esModule", ({
     value: true
 }));
 exports["default"] = Image;
-var _react = _interopRequireWildcard(__webpack_require__(6689));
-var _head = _interopRequireDefault(__webpack_require__(4957));
-var _imageConfig = __webpack_require__(5843);
-var _useIntersection = __webpack_require__(9246);
+var _react = _interopRequireWildcard(__webpack_require__(689));
+var _head = _interopRequireDefault(__webpack_require__(957));
+var _imageConfig = __webpack_require__(843);
+var _useIntersection = __webpack_require__(246);
 var _imageConfigContext = __webpack_require__(744);
-var _utils = __webpack_require__(9232);
-var _normalizeTrailingSlash = __webpack_require__(2700);
+var _utils = __webpack_require__(232);
+var _normalizeTrailingSlash = __webpack_require__(700);
 function Image(_param) {
     var { src , sizes , unoptimized =false , priority =false , loading , lazyRoot =null , lazyBoundary ="200px" , className , quality , width , height , style , objectFit , objectPosition , onLoadingComplete , placeholder ="empty" , blurDataURL  } = _param, all = _objectWithoutProperties(_param, [
         "src",
@@ -700,7 +700,7 @@ if (typeof exports.default === "function" || typeof exports.default === "object"
 
 /***/ }),
 
-/***/ 2700:
+/***/ 700:
 /***/ ((module, exports) => {
 
 "use strict";
@@ -723,7 +723,7 @@ if (typeof exports.default === "function" || typeof exports.default === "object"
 
 /***/ }),
 
-/***/ 9246:
+/***/ 246:
 /***/ ((module, exports, __webpack_require__) => {
 
 "use strict";
@@ -732,8 +732,8 @@ Object.defineProperty(exports, "__esModule", ({
     value: true
 }));
 exports.useIntersection = useIntersection;
-var _react = __webpack_require__(6689);
-var _requestIdleCallback = __webpack_require__(4686);
+var _react = __webpack_require__(689);
+var _requestIdleCallback = __webpack_require__(686);
 const hasIntersectionObserver = typeof IntersectionObserver !== "undefined";
 function useIntersection({ rootRef , rootMargin , disabled  }) {
     const isDisabled = disabled || !hasIntersectionObserver;
@@ -848,10 +848,10 @@ if (typeof exports.default === "function" || typeof exports.default === "object"
 
 /***/ }),
 
-/***/ 5675:
+/***/ 675:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-module.exports = __webpack_require__(9749)
+module.exports = __webpack_require__(749)
 
 
 /***/ })

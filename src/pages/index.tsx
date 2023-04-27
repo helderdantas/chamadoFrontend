@@ -3,7 +3,7 @@ import ColecaoChamado from "../backend/db/ColecaoChamado";
 import Botao from "../components/Botao";
 import Formulario from "../components/Formulario"
 import Layout from "../components/Layout";
-import Tabela from "../components/Tabela";
+import TabelaReduzida from "../components/TabelaReduzida";
 import Chamado from "../core/chamado/Chamado";
 import ChamadoRepositorio from "../core/chamado/ChamadoRepositorio";
 import Image from 'next/image'
@@ -26,6 +26,7 @@ export default function Home() {
   // Metodo que exibe na tabela todos os chamados abertos
   function obterChamadosAbertos() {
     repo.obterChamadosAbertos().then(chamados => {
+      console.log(chamados)
       setChamados(chamados)
       setVisivel('tabela')
     })
@@ -78,7 +79,7 @@ export default function Home() {
               </Botao>
             </div>
           
-            <Tabela chamados={chamados}
+            <TabelaReduzida chamados={chamados}
           //  chamadoSelecionado={chamadoSelecionado}
           //  chamadoFinalizado={chamadoFinalizado}
             />

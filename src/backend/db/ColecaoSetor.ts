@@ -4,6 +4,9 @@ const axios = require('axios');
 
 
 export default class ColecaoSetor implements SetorRepositorio {
+    SetoresAtivos(): Promise<Setor[]> {
+        throw new Error("Method not implemented.");
+    }
     atualizarTelefone(setor: Setor): Promise<void> {
         throw new Error("Method not implemented.");
     }

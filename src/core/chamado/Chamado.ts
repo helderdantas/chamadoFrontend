@@ -5,6 +5,15 @@ export default class Chamado{
     #setor: string
     #subSetor: string
     #ilha: string
+    #baia: string
+    #cputombo: string
+    #cpunumeroserie: string
+    #monitor1tombo: string
+    #monitor1numeroserie: string
+    #monitor2tombo: string
+    #monitor2numeroserie: string
+    #impressora: string
+    #telefone: string
     #equipamentoComDefeito:string
     #equipamentoTombo:string
     #descricao: string
@@ -14,12 +23,21 @@ export default class Chamado{
     #createAt:Date
     #updateAt:Date
 
-    constructor(aberto:boolean, nome:string, setor: string, subSetor: string, ilha: string, equipamentoComDefeito:string, equipamentoTombo:string, descricao: string, equipeSuport:string, status:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
+    constructor(aberto:boolean, nome:string, setor: string, subSetor: string, ilha: string, baia:string, cputombo:string, cpunumeroserie: string, monitor1tombo: string, monitor1numeroserie: string, monitor2tombo:string, monitor2numeroserie: string, impressora:string, telefone:string, equipamentoComDefeito:string, equipamentoTombo:string, descricao: string, equipeSuport:string, status:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
         this.#aberto=aberto
         this.#nome=nome
         this.#setor=setor
         this.#subSetor=subSetor
         this.#ilha=ilha
+        this.#baia=baia
+        this.#cputombo=cputombo
+        this.#cpunumeroserie=cpunumeroserie
+        this.#monitor1tombo=monitor1tombo
+        this.#monitor1numeroserie=monitor1numeroserie
+        this.#monitor2tombo=monitor2tombo
+        this.#monitor2numeroserie=monitor2numeroserie
+        this.#impressora=impressora
+        this.#telefone=telefone
         this.#equipamentoComDefeito=equipamentoComDefeito
         this.#equipamentoTombo=equipamentoTombo
         this.#descricao=descricao
@@ -32,7 +50,7 @@ export default class Chamado{
     }
 
     static vazio(){
-        return new Chamado(null,'','','','','','','','','','',null,null,null)
+        return new Chamado(null,'','','','','','','','','','','','','','','','','','','',null,null,null)
     }
 
     get id(){
@@ -58,6 +76,42 @@ export default class Chamado{
     get ilha(){
         return this.#ilha
     }
+    get baia(){
+        return this.#baia
+    }
+
+    get cputombo(){
+        return this.#cputombo
+    }
+    
+    get cpunumeroserie(){
+        return this.#cpunumeroserie
+    }
+
+    get monitor1tombo(){
+        return this.#monitor1tombo
+    }
+
+    get monitor1numeroserie(){
+        return this.#monitor1numeroserie
+    }
+
+    get monitor2tombo(){
+        return this.#monitor2tombo
+    }
+
+    get monitor2numeroserie(){
+        return this.#monitor2numeroserie
+    }
+
+    get impressora(){
+        return this.#impressora
+    }
+
+    get telefone(){
+        return this.#telefone
+    }
+
 
     get equipamentoComDefeito(){
         return this.#equipamentoComDefeito

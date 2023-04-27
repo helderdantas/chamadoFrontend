@@ -13,7 +13,16 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                 nome: chamado.nome,
                 setor: chamado.setor,
                 subSetor: chamado.subSetor,
-                ilha: chamado.ilha,                              
+                ilha: chamado.ilha,
+                baia: chamado.baia,
+                cputombo: chamado.cputombo,
+                cpunumeroserie: chamado.cpunumeroserie, 
+                monitor1tombo: chamado.monitor1tombo, 
+                monitor1numeroserie: chamado.monitor1numeroserie, 
+                monitor2tombo: chamado.monitor2tombo, 
+                monitor2numeroserie: chamado.monitor2numeroserie,
+                impressora: chamado.impressora,
+                telefone: chamado.telefone,                                  
                 equipamentoComDefeito: chamado.equipamentoComDefeito,
                 equipamentoTombo:chamado.equipamentoTombo,
                 descricao: chamado.descricao,
@@ -108,6 +117,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
 
 
     async obterTodosChamados(): Promise<Chamado[]> {
+        console.log('entrei na rota chamado')
         try {
 
             let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosChamados`)
@@ -121,7 +131,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
 
     async chamadosPorSetor(nome:string, dataInicial:string, dataFinal:string): Promise<{}> {
         try {
-
+            console.log('entrei na rota seto')
             let body = {
                 setor:nome,
                 dataInicial:dataInicial,

@@ -17,11 +17,19 @@ export default function Tabela(props: TabelaProps) {
     function renderizarCabecalho() {
         return (
             <tr className="flex-wrap">
-                <th className="text-left p-1 text-xs">Código</th>
                 <th className="text-left p-1 text-xs">Nome</th>
                 <th className="text-left p-1 text-xs">Setor</th>
                 <th className="text-left p-1 text-xs">Subsetor</th>
                 <th className="text-left p-1 text-xs">Ilha Nº</th>
+                <th className="text-left p-1 text-xs">Baia Nº</th>
+                <th className="text-left p-1 text-xs">CPU-T</th>
+                <th className="text-left p-1 text-xs">CPU-NS</th>
+                <th className="text-left p-1 text-xs">Monitor1-T</th>
+                <th className="text-left p-1 text-xs">Monitor1-NS</th>
+                <th className="text-left p-1 text-xs">Monitor2-T</th>
+                <th className="text-left p-1 text-xs">Monitor2-NS</th>
+                <th className="text-left p-1 text-xs">Impressora</th>
+                <th className="text-left p-1 text-xs">Telefone</th>
                 <th className="text-left p-1 text-xs">Equipamento com Defeito</th>
                 <th className="text-left p-1 text-xs">Tombo do Equipamento</th>
                 <th className="text-left p-1 text-xs">Descricao</th>
@@ -39,11 +47,19 @@ export default function Tabela(props: TabelaProps) {
         return props.chamados?.map((chamado, i) => {
             return (
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
-                    <td className="text-left p-1 text-xs">{chamado.id}</td>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
                     <td className="text-left p-1 text-xs">{chamado.setor}</td>
                     <td className="text-left p-1 text-xs">{chamado.subSetor}</td>
                     <td className="text-left p-1 text-xs">{chamado.ilha}</td>
+                    <td className="text-left p-1 text-xs">{chamado.baia}</td>
+                    <td className="text-left p-1 text-xs">{chamado.cputombo}</td>
+                    <td className="text-left p-1 text-xs">{chamado.cpunumeroserie}</td>
+                    <td className="text-left p-1 text-xs">{chamado.monitor1tombo}</td>
+                    <td className="text-left p-1 text-xs">{chamado.monitor1numeroserie}</td>
+                    <td className="text-left p-1 text-xs">{chamado.monitor2tombo}</td>
+                    <td className="text-left p-1 text-xs">{chamado.monitor2numeroserie}</td>
+                    <td className="text-left p-1 text-xs">{chamado.impressora}</td>
+                    <td className="text-left p-1 text-xs">{chamado.telefone}</td>
                     <td className="text-left p-1 text-xs">{chamado.equipamentoComDefeito}</td>
                     <td className="text-left p-1 text-xs">{chamado.equipamentoTombo}</td>
                     <td className="text-left p-1 text-xs">{chamado.descricao}</td>

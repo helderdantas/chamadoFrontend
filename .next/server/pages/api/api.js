@@ -22,7 +22,7 @@ var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_n
 ;// CONCATENATED MODULE: ./src/pages/api/api.js
 
 const api = external_axios_default().create({
-    baseURL: "http://localhost:3030"
+    baseURL: "http://localhost:3032"
 });
 /* harmony default export */ const api_api = (api);
 

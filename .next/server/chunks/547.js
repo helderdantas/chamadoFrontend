@@ -3,13 +3,13 @@ exports.id = 547;
 exports.ids = [547];
 exports.modules = {
 
-/***/ 3547:
+/***/ 547:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "Z": () => (/* binding */ ColecaoChamado)
 /* harmony export */ });
-const axios = __webpack_require__(2167);
+const axios = __webpack_require__(167);
 class ColecaoChamado {
     async criarChamado(chamado) {
         try {
@@ -19,6 +19,15 @@ class ColecaoChamado {
                 setor: chamado.setor,
                 subSetor: chamado.subSetor,
                 ilha: chamado.ilha,
+                baia: chamado.baia,
+                cputombo: chamado.cputombo,
+                cpunumeroserie: chamado.cpunumeroserie,
+                monitor1tombo: chamado.monitor1tombo,
+                monitor1numeroserie: chamado.monitor1numeroserie,
+                monitor2tombo: chamado.monitor2tombo,
+                monitor2numeroserie: chamado.monitor2numeroserie,
+                impressora: chamado.impressora,
+                telefone: chamado.telefone,
                 equipamentoComDefeito: chamado.equipamentoComDefeito,
                 equipamentoTombo: chamado.equipamentoTombo,
                 descricao: chamado.descricao,
@@ -26,7 +35,7 @@ class ColecaoChamado {
                 status: "ABERTO",
                 observacao: chamado.observacao
             };
-            var response = await axios.post(`${"http://10.26.0.73:3032/"}criarChamado/`, body);
+            var response = await axios.post(`${"http://localhost:3032/"}criarChamado/`, body);
             console.log(response);
             var data = response.data;
             return data;
@@ -39,7 +48,7 @@ class ColecaoChamado {
             try {
                 let config = {
                     method: "put",
-                    url: `${"http://10.26.0.73:3032/"}updateChamado/` + chamado.id,
+                    url: `${"http://localhost:3032/"}updateChamado/` + chamado.id,
                     data: {
                         subSetor: chamado.subSetor,
                         equipamentoComDefeito: chamado.equipamentoComDefeito,
@@ -63,7 +72,7 @@ class ColecaoChamado {
             if (chamado.id) {
                 let config = {
                     method: "put",
-                    url: `${"http://10.26.0.73:3032/"}updateCampoAbertoChamado/` + chamado.id,
+                    url: `${"http://localhost:3032/"}updateCampoAbertoChamado/` + chamado.id,
                     headers: {}
                 };
                 await axios(config);
@@ -75,7 +84,7 @@ class ColecaoChamado {
     }
     async obterChamadosAbertos() {
         try {
-            let response = await axios.get(`${"http://10.26.0.73:3032/"}listarChamadosAbertos`);
+            let response = await axios.get(`${"http://localhost:3032/"}listarChamadosAbertos`);
             return response.data;
         } catch (error) {
             return error;
@@ -83,15 +92,16 @@ class ColecaoChamado {
     }
     async obterChamadosComStatusAberto() {
         try {
-            let response = await axios.get(`${"http://10.26.0.73:3032/"}listarChamadosComStatusAberto`);
+            let response = await axios.get(`${"http://localhost:3032/"}listarChamadosComStatusAberto`);
             return response.data;
         } catch (error) {
             return error;
         }
     }
     async obterTodosChamados() {
+        console.log("entrei na rota chamado");
         try {
-            let response = await axios.get(`${"http://10.26.0.73:3032/"}listarTodosChamados`);
+            let response = await axios.get(`${"http://localhost:3032/"}listarTodosChamados`);
             return response.data;
         } catch (error) {
             return error;
@@ -99,12 +109,13 @@ class ColecaoChamado {
     }
     async chamadosPorSetor(nome, dataInicial, dataFinal) {
         try {
+            console.log("entrei na rota seto");
             let body = {
                 setor: nome,
                 dataInicial: dataInicial,
                 dataFinal: dataFinal
             };
-            const response = await axios.post(`${"http://10.26.0.73:3032/"}chamadosPorSetor`, body);
+            const response = await axios.post(`${"http://localhost:3032/"}chamadosPorSetor`, body);
             return response.data;
         } catch (error) {
             return error;
@@ -117,7 +128,7 @@ class ColecaoChamado {
                 dataInicial: dataInicial,
                 dataFinal: dataFinal
             };
-            const response = await axios.post(`${"http://10.26.0.73:3032/"}chamadosPorSuport`, body);
+            const response = await axios.post(`${"http://localhost:3032/"}chamadosPorSuport`, body);
             return response.data;
         } catch (error) {
             return error;
@@ -130,7 +141,7 @@ class ColecaoChamado {
                 dataInicial: dataInicial,
                 dataFinal: dataFinal
             };
-            const response = await axios.post(`${"http://10.26.0.73:3032/"}chamadosPorTipoEquipamento`, body);
+            const response = await axios.post(`${"http://localhost:3032/"}chamadosPorTipoEquipamento`, body);
             return response.data;
         } catch (error) {
             return error;

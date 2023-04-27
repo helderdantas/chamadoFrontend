@@ -103,12 +103,6 @@ export default function Suport() {
                                     <a href="/suport/relatorio" target="_blank">Relatórios</a>
                                 </Botao>
                                 <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/adm/setores" >Listar Setores</a>
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/adm/subSetores">Listar SubSetores</a>
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
                                     <a href="/adm/equipamentos">Listar tipos de Equipamentos</a>
                                 </Botao>
                                 <Botao cor="blue" className="mb-3 m-2">

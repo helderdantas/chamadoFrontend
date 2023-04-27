@@ -3,22 +3,14 @@ import ColecaoChamado from "../../backend/db/ColecaoChamado";
 import { GraficoChamado } from "../../components/GraficoChamados";
 import { GraficoSuport } from "../../components/GraficoSuport";
 import Layout from "../../components/Layout";
-import Paginacao from "../../components/Paginacao";
-import { useEquipamentos } from "../../hooks/useEquipamentos";
-import { useSetores } from "../../hooks/useSetores";
-import { useEquipeSuport } from "../../hooks/useEquipeSuport";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
-const axios = require('axios');
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import TabelaChamadoPorSetor from "../../components/TabelaChamadoPorSetor";
 import ColecaoSetor from "../../backend/db/ColecaoSetor";
 import SetorRepositorio from "../../core/setor/SetorRepositorio";
 import { Promise } from "mongoose";
-import Setor from "../../core/setor/Setor";
-import EquipeSuport from "../../components/EntradaListaEquipeSuport";
-
+const axios = require('axios');
 
 interface resultado {
     nomeSetor: string[],
@@ -106,18 +98,22 @@ export default function Suport() {
 
     // Funçao assincrona que lista a quantidade de chamados ocorridos nos setores dentro de um intervalo de tempo
     async function quantidadeChamadosSetor(dataIncial: string, dataFinal: string) {
-
+        
         //busca os setores ativos no banco e atribui a variavel local response
-        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarSetoresAtivos`)
+        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosSetores`)
+        console.log(response)
         //mapea a o resultado do response e cria uma lista de setores e atribui a variavel listaSetores
         let listaSetores = response.data.map(setor => setor.nome)
-
+        console.log(listaSetores)
         // Constante que recebe o retorno das requisiçoes da quantidade de chamando
         //ocorrido em cada setor
         const promises = listaSetores.map(setor => repo.chamadosPorSetor(setor, dataIncial, dataFinal))
 
         // Esperamos todas as promises completarem em seguida o resultado das promises em resultados
         const resultados = await Promise.all(promises)
+        console.log('valor1')
+        console.log(resultados)
+        console.log('valor2')
 
         // Variaveis locais criada para receberem do banco a lista contendo os nomes dos setores
         // e tambem da quantidade de chamados
@@ -175,6 +171,7 @@ export default function Suport() {
         })
 
         setDadosSuport(lista)
+        console.log(resultados)
         return resultados
     }
 
@@ -220,8 +217,9 @@ export default function Suport() {
             flex justify-center  items-end  min-h-screen  max-h-full
             bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50 
             `}>
-            <Layout titulo="RELATÓRIOS DE CHAMADOS GERADOS">
-                <div className="grid grap-2 grid-cols-4">
+            <Layout titulo="Relatórios de chamados">
+                <div className="grid grap-2 grid-cols-2">
+                <div className="grid grap-2 grid-cols-3">
                     <div className={`px-2 py-2`}>
                         <h2 className={`text-xl`}>Data inicial:</h2>
                         {calendario(true)}
@@ -232,7 +230,7 @@ export default function Suport() {
 
                     </div>
                     <div>
-                        <button className={` absolute bg-blue-800 text-white px-2 py-4 rounded-md`}
+                        <button className={` absolute bg-blue-800 text-white px-2 py-4 rounded-md  hover:bg-blue-600`}
                             onClick={() => {
                                 quantidadeChamadosSetor(inicio, fim)
                                 quantChamadosSuport(inicio, fim)
@@ -242,18 +240,23 @@ export default function Suport() {
                         </button>
                     </div>
                 </div>
+                </div>
                 <hr className="border-2 border-gray-600" />
-                <div className={`ustify-center`}>
+                <div className="justify-center grid grap-1 grid-cols-2">
+                    
                     <GraficoChamado total={soma} />
+
+
+                    <div className={`justify-center`}>
+                    <TabelaChamadoPorSetor nome={dadosSetor.nomeSetor} size={dadosSetor.quantidade} />
+                     </div>
+                     
                 </div>
                 <div className="justify-center grid grap-1 grid-cols-2">
                     <GraficoSuport title="Chamados por Suporte" data={dadosSuport} />
                     <GraficoSuport title="Chamados por Equipamento" data={dadosEquipamentos} />
                 </div>
-                <div className={`justify-center`}>
-                    <TabelaChamadoPorSetor nome={dadosSetor.nomeSetor} size={dadosSetor.quantidade} />
-                </div>
-
+               
             </Layout>
 
         </div>
