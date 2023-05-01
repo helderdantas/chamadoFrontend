@@ -33,6 +33,7 @@ export default function Tabela(props: TabelaProps) {
     }
     // Renderiza os dados do chamado no tabela e formulario
     function renderizarDados() {
+        if(props.chamados){
         return props.chamados?.map((chamado, i) => {
             return (
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
@@ -50,6 +51,7 @@ export default function Tabela(props: TabelaProps) {
             )
 
         })
+    }
     }
 
     // Renderiza os botoes editar e finalizar na tabela de chamados

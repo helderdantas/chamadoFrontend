@@ -87,7 +87,8 @@ export default class ColecaoSetor implements SetorRepositorio {
     async obterTodosSetores(): Promise<Setor[]> {
         try {
 
-            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosSetores`)
+            //let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosSetores`)
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL2}obterTodosSetores`)
             return response.data
 
         } catch (error) {

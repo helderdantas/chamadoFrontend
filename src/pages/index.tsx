@@ -27,8 +27,10 @@ export default function Home() {
   function obterChamadosAbertos() {
     repo.obterChamadosAbertos().then(chamados => {
       console.log(chamados)
+      if(chamado){
       setChamados(chamados)
       setVisivel('tabela')
+      }
     })
   }
 /*

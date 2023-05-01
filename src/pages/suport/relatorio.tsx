@@ -100,20 +100,26 @@ export default function Suport() {
     async function quantidadeChamadosSetor(dataIncial: string, dataFinal: string) {
         
         //busca os setores ativos no banco e atribui a variavel local response
-        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosSetores`)
-        console.log(response)
+        console.log(`${process.env.NEXT_PUBLIC_URL_2}setor/obterTodosSetores`)
+        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL_2}setor/obterTodosSetores`)
+      
         //mapea a o resultado do response e cria uma lista de setores e atribui a variavel listaSetores
         let listaSetores = response.data.map(setor => setor.nome)
-        console.log(listaSetores)
+      
         // Constante que recebe o retorno das requisiçoes da quantidade de chamando
         //ocorrido em cada setor
         const promises = listaSetores.map(setor => repo.chamadosPorSetor(setor, dataIncial, dataFinal))
 
         // Esperamos todas as promises completarem em seguida o resultado das promises em resultados
-        const resultados = await Promise.all(promises)
-        console.log('valor1')
+        
+        if(promises.length){
+        var resultados = await Promise.all(promises)
         console.log(resultados)
-        console.log('valor2')
+        }else{
+            resultados=[0]
+        }        
+        
+
 
         // Variaveis locais criada para receberem do banco a lista contendo os nomes dos setores
         // e tambem da quantidade de chamados
@@ -125,13 +131,14 @@ export default function Suport() {
 
             listSetores.push(resultados[key].nome)
             listQuantChamados.push(resultados[key].size)
-
+          
 
         })
-
         let soma = listQuantChamados.reduce(function (soma, i) {
             return soma + i;
         })
+
+               
         setSoma(soma)
         setDadosSetor({ nomeSetor: listSetores, quantidade: listQuantChamados })
 
@@ -171,7 +178,7 @@ export default function Suport() {
         })
 
         setDadosSuport(lista)
-        console.log(resultados)
+        
         return resultados
     }
 
