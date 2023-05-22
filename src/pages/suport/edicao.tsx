@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import Tabela from "../../components/Tabela";
 import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
+import Rota from "../../components/Rota";
 
 
 export default function Suport() {
@@ -93,10 +94,9 @@ export default function Suport() {
                                     onClick={novoChamado}>
                                     Novo chamado
                                 </Botao>
+                                <Rota rota="suport">Suport</Rota>
 
-                                <Botao cor="blue" className="mb-1 m-2">
-                                    <a href="/suport">Suport</a>
-                                </Botao>
+                               
 
                             </div>
                             <div className="flex justify-center">
@@ -109,10 +109,11 @@ export default function Suport() {
                     ) : (
 
                         <Formulario
-                            chamado={chamado}
-                            chamadoMudou={salvarChamado}
-                            cancelado={() => setVisivel('tabela')}
-
+                                chamado={chamado}
+                                chamadoMudou={salvarChamado}
+                                cancelado={() => setVisivel('tabela')}
+                                controle={undefined} 
+                                parametro={""}
                         />
                     )}
                 </Layout>

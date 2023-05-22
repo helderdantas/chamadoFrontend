@@ -6,6 +6,7 @@ import Layout from "../../components/Layout";
 import Tabela from "../../components/Tabela";
 import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
+import Rota from "../../components/Rota";
 
 
 export default function Suport() {
@@ -96,18 +97,10 @@ export default function Suport() {
                         <>
                             <div className="mt-1 flex justify-end">
 
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/suport/edicao">Edição dos Chamados</a>
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/suport/relatorio" target="_blank">Relatórios</a>
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/adm/equipamentos">Listar tipos de Equipamentos</a>
-                                </Botao>
-                                <Botao cor="blue" className="mb-3 m-2">
-                                    <a href="/adm/equipeSuport">Listar Equipe de Suporte</a>
-                                </Botao>
+                                <Rota rota="suport/edicao">Edição dos Chamados</Rota>
+                                <Rota rota="suport/relatorio">Relatórios</Rota>
+                                <Rota rota="suport/equipamentos">Listar tipos de Equipamentos</Rota>
+                                <Rota rota="suport/equipeSuport">Listar Equipe de Suporte</Rota>
 
 
                             </div>
@@ -119,10 +112,11 @@ export default function Suport() {
                     ) : (
 
                         <Formulario
-                            chamado={chamado}
-                            chamadoMudou={salvarChamado}
-                            cancelado={() => setVisivel('tabela')}
-
+                                chamado={chamado}
+                                chamadoMudou={salvarChamado}
+                                cancelado={() => setVisivel('tabela')} 
+                                controle={undefined} 
+                                parametro={""}
                         />
                     )}
                 </Layout>

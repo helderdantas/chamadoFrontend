@@ -10,7 +10,7 @@ export default class ColecaoControle implements ControleRepositorio {
     async obterControleControlePorId(id:string): Promise<Controle> {
         try {
 
-            let response = await axios.get(`http://localhost:3030/listarControle/` + id)
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL_2}listarControle/` + id)
             return response.data
 
         } catch (error) {

@@ -16,6 +16,7 @@ export default class Controle{
     #observacao: string
     #createAt:Date
     #updateAt:Date
+    length: any
 
     constructor(setor: string, subsetor: string, ilha:string, baia:string, cputombo:string, cpunumeroserie: string, monitor1tombo: string, monitor1numeroserie: string, monitor2tombo:string, monitor2numeroserie: string, impressora:string, telefone:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
         this.#setor=setor

@@ -22,9 +22,6 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-1 text-xs">Subsetor</th>
                 <th className="text-left p-1 text-xs">Ilha Nº</th>
                 <th className="text-left p-1 text-xs">Est Trabalho</th>
-                <th className="text-left p-1 text-xs">Equipamento com Defeito</th>
-                <th className="text-left p-1 text-xs">Nº Equipamento</th>
-                <th className="text-left p-1 text-xs">Descricao</th>
                 <th className="text-left p-1 text-xs">Atribuido para</th>
                 <th className="text-left p-1 text-xs">Status</th>
             </tr>
@@ -42,9 +39,6 @@ export default function Tabela(props: TabelaProps) {
                     <td className="text-left p-1 text-xs">{chamado.subSetor}</td>
                     <td className="text-left p-1 text-xs">{chamado.ilha}</td>
                     <td className="text-left p-1 text-xs">{chamado.baia}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipamentoComDefeito}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipamentoTombo}</td>
-                    <td className="text-left p-1 text-xs">{chamado.descricao}</td>
                     <td className="text-left p-1 text-xs">{chamado.equipeSuport}</td>
                     <td className="text-left p-1 text-xs">{chamado.status}</td>
                     </tr>

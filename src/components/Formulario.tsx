@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Chamado from "../core/chamado/Chamado";
 import Botao from "./Botao";
 import Entrada from "./Entrada";
@@ -16,13 +16,15 @@ interface FormularioProps {
     chamado: Chamado
     chamadoMudou?: (chamado: Chamado) => void
     cancelado?: () => void
+    controle: Controle
+    parametro:string
 
 }
 
-
-// Componete que criar o modelo de formulario
 export default function Formulario(props: FormularioProps) {
-
+    
+ 
+// Componete que criar o modelo de formulario
     const repo: ControleRepositorio = new ColecaoControle()
     const id = props.chamado?.id
     const aberto = props.chamado?.aberto
@@ -49,14 +51,33 @@ export default function Formulario(props: FormularioProps) {
     const [observacao, setObservacao] = useState(props.chamado?.observacao ?? null)
     const [controle, setControle] = useState<Controle>(Controle.vazio())
     const [qrcode, setQrcode] = useState('')
+    
 
-
+   // console.log(props.controle.valueOf.length)
+    if(props.controle){
+        
+    useEffect(() => {
+        setSetor(props.controle.setor)
+        setSubSetor(props.controle.subsetor)
+        setIlha(props.controle.ilha)
+        setBaia(props.controle.baia)
+        setCpuTombo(props.controle.cputombo)
+        setCpuNumeroSerie(props.controle.cpunumeroserie)
+        setMonitor1Tombo(props.controle.monitor1tombo)
+        setMonitor1NumeroSerie(props.controle.monitor1numeroserie)
+        setMonitor2Tombo(props.controle.monitor2tombo)
+        setMonitor2NumeroSerie(props.controle.monitor2numeroserie)
+        setImpressora(props.controle.impressora)
+    }, [props.controle])}
+    
+    //console.log(props.controle)
     async function preencherFormularios() {
 
         try {
             if (qrcode === '') {
                 console.log('digite o codigo')
             } else {
+                
                 await repo.obterControleControlePorId(qrcode).then(controle => {
                     setControle(controle)
                 })
@@ -109,10 +130,10 @@ export default function Formulario(props: FormularioProps) {
 
             )}
 
-            {!id ? (
+            { !props.parametro && !id ? (
                 <div>
                     <Entrada
-                        texto="QRCODE"
+                        texto="CÓDIGO"
                         valor={qrcode}
                         valorMudou={setQrcode}
                     />
