@@ -1,10 +1,11 @@
 import { useEquipeSuport } from "../hooks/useEquipeSuport";
 interface EntradaProps {
+    id?: string
     tipo?: 'text'
     texto: string
     valor: any
     valorMudou?: (valor: any) => void
-    
+
 
 }
 export default function EquipeSuport(props: EntradaProps) {
@@ -12,7 +13,7 @@ export default function EquipeSuport(props: EntradaProps) {
     function renderiza() {
         return equipeSuports?.map((suport, i) => {
             return (
-                <option value={suport.nome} >{suport.nome}</option>
+                <option key={i} value={suport.nome} >{suport.nome}</option>
             )
         })
     }
@@ -25,7 +26,9 @@ export default function EquipeSuport(props: EntradaProps) {
                 <select
                     onChange={e => props.valorMudou(e.target.value)}
                     className={`border border-purple-500 rounded-lg focus:outline-none bg-white px-4 py-3`}>
-                    <option value={''} >SELECIONE</option>
+                    {!props.id ? (<option value={''} >SELECIONE</option>) :
+                        (<option value={props.valor} >{props.valor}</option>)
+                    }
                     {renderiza()}
                 </select>
             </div>

@@ -5,10 +5,8 @@ import { GraficoSuport } from "../../components/GraficoSuport";
 import Layout from "../../components/Layout";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css';
 import TabelaChamadoPorSetor from "../../components/TabelaChamadoPorSetor";
-import ColecaoSetor from "../../backend/db/ColecaoSetor";
-import SetorRepositorio from "../../core/setor/SetorRepositorio";
 import { Promise } from "mongoose";
 const axios = require('axios');
 
@@ -21,7 +19,6 @@ interface resultado {
 export default function Suport() {
 
     // constantes inicializadoras
-    const repoSetor: SetorRepositorio = new ColecaoSetor()
     const repo: ChamadoRepositorio = new ColecaoChamado()
     const [dadosSetor, setDadosSetor] = useState<resultado>({ nomeSetor: [], quantidade: [] })
     const [dadosSuport, setDadosSuport] = useState([])
@@ -151,7 +148,7 @@ export default function Suport() {
 
 
         //busca os suportes ativos no banco e atribui a variavel local response
-        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarEquipeSuportAtivos`)
+        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}equipeSuport/listarEquipeSuportAtivos`)
         //mapea a o resultado do response e cria uma lista de suports e atribui a variavel listaSetores
         let suportes = response.data.map((equipeSuport: { nome: any; }) => equipeSuport.nome)
 
@@ -187,13 +184,13 @@ export default function Suport() {
     async function quantChamadosEquipamento(dataIncial: string, dataFinal: string) {
 
         //busca os equipamentos ativos no banco e atribui a variavel local response
-        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarEquipamentosAtivos`)
+        let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}equipamentos/listarEquipamentosAtivos`)
         //mapea a o resultado do response e cria uma lista de equipamentos e atribui a variavel listaSetores
         let equipamentos = response.data.map((equipamento: { nome: any; }) => equipamento.nome)
 
         // Constante que recebe o retorno das requisiçoes da quantidade de chamando
         //ocorrido em cada setor
-        const promises = equipamentos.map(equipamentoComDefeito => repo.chamadosPorTipoEquipamento(equipamentoComDefeito, dataIncial, dataFinal))
+        const promises = equipamentos.map(equipamentocomdefeito => repo.chamadosPorTipoEquipamento(equipamentocomdefeito, dataIncial, dataFinal))
 
         // Esperamos todas as promises completarem em seguida o resultado das promises em resultados
         const resultados = await Promise.all(promises)

@@ -5,6 +5,7 @@ import Botao from "./Botao";
 interface Dados {
     rota?: string
     children: any
+    novaAbaa?:boolean
   
 }
 
@@ -12,8 +13,12 @@ interface Dados {
 export default function rotas(props: Dados) {
 
     const rota = (valor:string) => {
-      
-        return Router.push(`/${valor}`);
+        if(props.novaAbaa){
+            return window.open(`/${valor}`, '_blank');            
+        }else{
+            return Router.push(`/${valor}`);
+        }     
+       
        }
      
     

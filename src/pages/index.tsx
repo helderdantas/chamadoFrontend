@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ColecaoChamado from "../backend/db/ColecaoChamado";
 import Botao from "../components/Botao";
-import Formulario from "../components/Formulario"
+import FormularioReduzido from "../components/FormularioReduzido"
 import Layout from "../components/Layout";
 import TabelaReduzida from "../components/TabelaReduzida";
 import Chamado from "../core/chamado/Chamado";
@@ -23,10 +23,6 @@ export default function Home() {
   const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
   const [valor, setValor] = useState('')
 
-
-
-
-
   useEffect(obterChamadosAbertos, [])
 
   // Metodo que exibe na tabela todos os chamados abertos
@@ -38,7 +34,7 @@ export default function Home() {
       }
     })
   }
- 
+
   // Metodo para criar ou atualizar chamado
   async function salvarChamado(chamado: Chamado) {
     if (chamado.id) {
@@ -51,7 +47,6 @@ export default function Home() {
 
   // Metodo que abre um formulario vazio para criar um novo chamado
   function novoChamado() {
-
     // Suponha que a URL seja: http://seusite.com/?parametro=valor
     // Obtém a URL atual
     const urlParams = new URLSearchParams(window.location.search);
@@ -64,15 +59,13 @@ export default function Home() {
       repoControle.obterControleControlePorId(parametro).then(controle => {
         setControle(controle)
       })
-    
-    }
 
-    
+    }
     setChamado(Chamado.vazio())
     setVisivel('form')
 
   }
-
+  
   return (
     <>
 
@@ -91,22 +84,21 @@ export default function Home() {
                 </Botao>
               </div>
 
-              <TabelaReduzida chamados={chamados}/>
+              <TabelaReduzida chamados={chamados} />
             </>
           ) : (
 
-            <Formulario
-              chamado={chamado}
+            <FormularioReduzido
               chamadoMudou={salvarChamado}
               cancelado={() => setVisivel('tabela')}
               controle={controle}
               parametro={valor}
-
             />
           )}
         </Layout>
 
       </div>
+
     </>
   )
 }

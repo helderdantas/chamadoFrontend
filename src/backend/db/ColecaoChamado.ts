@@ -12,23 +12,17 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                 aberto: true,
                 nome: chamado.nome,
                 setor: chamado.setor,
-                subSetor: chamado.subSetor,
-                ilha: chamado.ilha,
-                baia: chamado.baia,
-                cputombo: chamado.cputombo,
-                cpunumeroserie: chamado.cpunumeroserie, 
-                monitor1tombo: chamado.monitor1tombo, 
-                monitor1numeroserie: chamado.monitor1numeroserie, 
-                monitor2tombo: chamado.monitor2tombo, 
-                monitor2numeroserie: chamado.monitor2numeroserie,
-                impressora: chamado.impressora,
-                telefone: chamado.telefone,                                  
-                equipamentoComDefeito: chamado.equipamentoComDefeito,
-                equipamentoTombo:chamado.equipamentoTombo,
+                subsetor: chamado.subsetor,
+                ilha:chamado.ilha,
+                estacaotrabalho:chamado.estacaotrabalho,
+                equipamentocomdefeito: chamado.equipamentocomdefeito,
+                equipamentotombo:chamado.equipamentotombo,
+                equipamentonumeroserie:chamado.equipamentonumeroserie,
                 descricao: chamado.descricao,
-                equipeSuport: chamado.equipeSuport,
+                equipesuport: chamado.equipesuport,
                 status: "ABERTO",
                 observacao: chamado.observacao,
+
 
             };
             var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarChamado/`, body);
@@ -48,9 +42,9 @@ export default class ColecaoChamado implements ChamadoRepositorio {
                     method: 'put',
                     url: `${process.env.NEXT_PUBLIC_URL}updateChamado/` + chamado.id,
                     data: {
-                        subSetor: chamado.subSetor,
-                        equipamentoComDefeito: chamado.equipamentoComDefeito,
-                        equipeSuport: chamado.equipeSuport,
+                        subSetor: chamado.subsetor,
+                        equipamentocomdefeito: chamado.equipamentocomdefeito,
+                        equipesuport: chamado.equipesuport,
                         status: chamado.status,
                         ilha: chamado.ilha,
                         observacao: chamado.observacao
@@ -150,7 +144,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
         try {
 
             let body = {
-                equipeSuport:nome,
+                equipesuport:nome,
                 dataInicial:dataInicial,
                 dataFinal:dataFinal,
                 }
@@ -167,7 +161,7 @@ export default class ColecaoChamado implements ChamadoRepositorio {
         try {
 
             let body = {
-                equipamentoComDefeito:nome,
+                equipamentocomdefeito:nome,
                 dataInicial:dataInicial,
                 dataFinal:dataFinal,
                 }

@@ -1,14 +1,22 @@
 
 interface EntradaProps {
+    id?: string
     tipo?: 'text'
     texto: string
     valor: any
     valorMudou?: (valor: any) => void
-    
+
 
 }
 export default function Status(props: EntradaProps) {
-   
+    function renderiza() {
+        const STATUS = ['EM ATENTIMENTO', 'RESOLVIDO', 'NÃO RESOLVIDO', 'CANCELADO']
+        return STATUS?.map((status, i) => {
+            return (
+                <option key={i} value={status} >{status}</option>
+            )
+        })
+    }
     return (
         <div>
             <label className="mb-1 mt-3">
@@ -18,12 +26,12 @@ export default function Status(props: EntradaProps) {
                 <select
                     onChange={e => props.valorMudou(e.target.value)}
                     className={`border border-purple-500 rounded-lg focus:outline-none bg-white px-4 py-3`}>
-                    <option value={'ABERTO'} >ABERTO</option>
-                    <option value={'EM ATENDIMENTO'} >EM ATENDIMENTO</option>
-                    <option value={'RESOLVIDO'} >RESOLVIDO</option>
-                    <option value={'NAO RESOLVIDO'} >NÃO RESOLVIDO</option>
-                    <option value={'CANCELADO'} >CANCELADO</option>
-                   
+                    {!props.id ? (<option value={''} >SELECIONE</option>) :
+                        (<option value={props.valor} >{props.valor}</option>)
+                    }
+                    {renderiza()}
+
+
                 </select>
             </div>
 

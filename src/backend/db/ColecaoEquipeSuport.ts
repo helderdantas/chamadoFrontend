@@ -17,7 +17,7 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
                 telefone: equipeSuport.telefone,
             };
             console.log('entrei')
-            var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}criarEquipeSuport/`, body);
+            var response = await axios.post(`${process.env.NEXT_PUBLIC_URL}equipesuport/criarEquipeSuport/`, body);
             console.log(response)
             var data = response.data
             return data
@@ -32,7 +32,7 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
 
                 let config = {
                     method: 'put',
-                    url: `${process.env.NEXT_PUBLIC_URL}updateCampoAtivoEquipeSuport/` + equipeSuport.id,
+                    url: `${process.env.NEXT_PUBLIC_URL}equipesuport/updateCampoAtivoEquipeSuport/` + equipeSuport.id,
                     headers: {}
                 };
                 await axios(config)
@@ -51,7 +51,7 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
             try {
                 let config = {
                     method: 'put',
-                    url: `${process.env.NEXT_PUBLIC_URL}updateTelefoneEquipeSuport/` + equipeSuport.id,
+                    url: `${process.env.NEXT_PUBLIC_URL}equipesuport/updateTelefoneEquipeSuport/` + equipeSuport.id,
                     data: {
                         telefone: equipeSuport.telefone
                     }
@@ -69,12 +69,10 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
         }
     }
 
-
-
     async obterEquipeSuportAtivos(): Promise<EquipeSuport[]> {
         try {
 
-            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarEquipeSuportAtivos`)
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}equipesuport/listarEquipeSuportAtivos`)
             return response.data
 
         } catch (error) {
@@ -86,7 +84,7 @@ export default class ColecaoEquipeSuport implements EquipeSuportRepositorio {
     async obterTodosEquipeSuport(): Promise<EquipeSuport[]> {
         try {
 
-            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}listarTodosEquipeSuport`)
+            let response = await axios.get(`${process.env.NEXT_PUBLIC_URL}equipesuport/listarTodosEquipeSuport`)
             return response.data
 
         } catch (error) {

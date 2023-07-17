@@ -1,5 +1,6 @@
 import { useEquipamentos } from "../hooks/useEquipamentos";
 interface EntradaProps {
+    id?: string
     tipo?: 'text'
     texto: string
     valor: any
@@ -9,11 +10,15 @@ interface EntradaProps {
 export default function Equipamentos(props: EntradaProps) {
     const equipamentos = useEquipamentos()
     function renderiza() {
-        return equipamentos?.map((equipamento, i) => {
-            return (
-                <option value={equipamento.nome} >{equipamento.nome}</option>
-            )
-        })
+        if (equipamentos) {
+            return equipamentos?.map((equipamento, i) => {
+                return (
+                    <option key={i} value={equipamento.nome} >{equipamento.nome}</option>
+                )
+            })
+
+        }
+
     }
     return (
         <div>
@@ -24,7 +29,9 @@ export default function Equipamentos(props: EntradaProps) {
                 <select
                     onChange={e => props.valorMudou(e.target.value)}
                     className={`border border-purple-500 rounded-lg focus:outline-none bg-white px-4 py-3`}>
-                    <option value={''} >SELECIONE</option>
+                    {!props.id ? (<option value={''} >SELECIONE</option>) :
+                        (<option value={props.valor} >{props.valor}</option>)
+                    }
                     {renderiza()}
                 </select>
             </div>

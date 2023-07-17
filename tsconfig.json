@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/pages/TabelaSuport.js", "src/pages/TabelaSuport.js"  ],
   "exclude": [
     "node_modules"
   ]

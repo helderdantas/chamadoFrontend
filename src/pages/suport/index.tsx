@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import ColecaoChamado from "../../backend/db/ColecaoChamado";
-import Botao from "../../components/Botao";
-import Formulario from "../../components/Formulario"
 import Layout from "../../components/Layout";
-import Tabela from "../../components/Tabela";
+import Tabela from "../../components/TabelaSuport";
 import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
 import Rota from "../../components/Rota";
@@ -29,7 +27,7 @@ export default function Suport() {
     const [chamado, setChamado] = useState<Chamado>(Chamado.vazio())
     const [chamados, setChamados] = useState<Chamado[]>([])
     const [chamadosAberto, setChamadosAberto] = useState<Chamado[]>([])
-    const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
+    const [visivel, setVisivel] = useState('tabela')
 
 
     useEffect(obterChamadosAbertos, [])
@@ -98,7 +96,7 @@ export default function Suport() {
                             <div className="mt-1 flex justify-end">
 
                                 <Rota rota="suport/edicao">Edição dos Chamados</Rota>
-                                <Rota rota="suport/relatorio">Relatórios</Rota>
+                                <Rota rota="suport/relatorio" novaAbaa>Relatórios</Rota>
                                 <Rota rota="suport/equipamentos">Listar tipos de Equipamentos</Rota>
                                 <Rota rota="suport/equipeSuport">Listar Equipe de Suporte</Rota>
 
@@ -109,16 +107,7 @@ export default function Suport() {
 
                             />
                         </>
-                    ) : (
-
-                        <Formulario
-                                chamado={chamado}
-                                chamadoMudou={salvarChamado}
-                                cancelado={() => setVisivel('tabela')} 
-                                controle={undefined} 
-                                parametro={""}
-                        />
-                    )}
+                    ) : false}
                 </Layout>
             </div>
 

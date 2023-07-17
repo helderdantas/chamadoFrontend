@@ -3,10 +3,11 @@ import ColecaoChamado from "../../backend/db/ColecaoChamado";
 import Botao from "../../components/Botao";
 import Formulario from "../../components/Formulario"
 import Layout from "../../components/Layout";
-import Tabela from "../../components/Tabela";
+import Tabela from "../../components/TabelaSuport";
 import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
 import Rota from "../../components/Rota";
+import FormularioSuport from "../../components/FormularioSuport";
 
 
 export default function Suport() {
@@ -17,7 +18,7 @@ export default function Suport() {
     const [chamado, setChamado] = useState<Chamado>(Chamado.vazio())
     const [chamados, setChamados] = useState<Chamado[]>([])
     const [visivel, setVisivel] = useState<'tabela' | 'form'>('tabela')
-
+    const [flag, setFlag] = useState<true | false>(true)
 
     /*
      useEffect(() => {
@@ -36,8 +37,6 @@ export default function Suport() {
         })
     }
 
-
-
     // Metodo que exibe no formulario os dados do chamado selecionado
     function chamadoSelecionado(chamado: Chamado) {
         setChamado(chamado)
@@ -55,29 +54,16 @@ export default function Suport() {
         } else {
             await repo.criarChamado(chamado) // cria um novo chamado
         }
-
         obterChamadosAbertos()
+        setFlag(true)
     }
 
     // Metodo que abre um formulario vazio para criar um novo chamado
     function novoChamado() {
         setChamado(Chamado.vazio())
-        setVisivel('form')
+        setFlag(false)
 
     }
-    /*
-    // Metodo para listar todos os chamados abertos e finalizados
-    function listarTodosChamados() {
-        repo.obterTodosChamados().then(chamados => {
-            setChamados(chamados)
-            setVisivel('tabela')
-        })
-
-    }
-    */
-
-
-
 
     return (
         <>
@@ -85,8 +71,9 @@ export default function Suport() {
     flex justify-center items-center min-h-screen  max-h-full
     bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50
     `}>
-                <Layout  titulo="Chamados abertos">
-                    {visivel === 'tabela' ? (
+                <Layout titulo="Chamados abertos">
+
+                    {flag ? (visivel === 'tabela' ? (
                         <>
                             <div className="mt-1 flex justify-end">
 
@@ -96,26 +83,32 @@ export default function Suport() {
                                 </Botao>
                                 <Rota rota="suport">Suport</Rota>
 
-                               
+
 
                             </div>
                             <div className="flex justify-center">
-                            <Tabela chamados={chamados}
-                                chamadoSelecionado={chamadoSelecionado}
-                                chamadoFinalizado={chamadoFinalizado}
-                            />
+                                <Tabela chamados={chamados}
+                                    chamadoSelecionado={chamadoSelecionado}
+                                    chamadoFinalizado={chamadoFinalizado}
+                                />
                             </div>
                         </>
                     ) : (
 
                         <Formulario
-                                chamado={chamado}
-                                chamadoMudou={salvarChamado}
-                                cancelado={() => setVisivel('tabela')}
-                                controle={undefined} 
-                                parametro={""}
+                            chamado={chamado}
+                            chamadoMudou={salvarChamado}
+                            cancelado={() => setVisivel('tabela')}
+                            controle={undefined}
+                            parametro={""}
                         />
-                    )}
+                    )) : (<FormularioSuport
+                        chamadoMudou={salvarChamado}
+                        cancelado={() => {setVisivel('tabela'), setFlag(true)}}
+                      
+                    />)}
+
+
                 </Layout>
 
 

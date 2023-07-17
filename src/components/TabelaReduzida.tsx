@@ -21,7 +21,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-1 text-xs">Setor</th>
                 <th className="text-left p-1 text-xs">Subsetor</th>
                 <th className="text-left p-1 text-xs">Ilha Nº</th>
-                <th className="text-left p-1 text-xs">Est Trabalho</th>
+                <th className="text-left p-1 text-xs">Estação de Trabalho</th>
                 <th className="text-left p-1 text-xs">Atribuido para</th>
                 <th className="text-left p-1 text-xs">Status</th>
             </tr>
@@ -36,10 +36,10 @@ export default function Tabela(props: TabelaProps) {
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
                     <td className="text-left p-1 text-xs">{chamado.setor}</td>
-                    <td className="text-left p-1 text-xs">{chamado.subSetor}</td>
+                    <td className="text-left p-1 text-xs">{chamado.subsetor}</td>
                     <td className="text-left p-1 text-xs">{chamado.ilha}</td>
-                    <td className="text-left p-1 text-xs">{chamado.baia}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipeSuport}</td>
+                    <td className="text-left p-1 text-xs">{chamado.estacaotrabalho}</td>
+                    <td className="text-left p-1 text-xs">{chamado.equipesuport}</td>
                     <td className="text-left p-1 text-xs">{chamado.status}</td>
                     </tr>
             )
