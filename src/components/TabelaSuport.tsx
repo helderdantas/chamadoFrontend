@@ -1,10 +1,15 @@
 import Chamado from "../core/chamado/Chamado"
 import { IconeEdicao, IconeFinalizado } from "./Icones"
 
+import React from "react"
+
+  
+
 interface TabelaProps {
     chamados: Chamado[]
     chamadoSelecionado?: (chamado: Chamado) => void
     chamadoFinalizado?: (chamado: Chamado) => void
+    dateProp?: React.ReactNode;
 
 }
 
@@ -19,16 +24,13 @@ export default function Tabela(props: TabelaProps) {
             <tr className="flex-wrap">
                 <th className="text-left p-1 text-xs">Nome</th>
                 <th className="text-left p-1 text-xs">Setor</th>
-                <th className="text-left p-1 text-xs">Subsetor</th>
                 <th className="text-left p-1 text-xs">Ilha Nº</th>
-                <th className="text-left p-1 text-xs">Estação de Trabalho</th>
-                <th className="text-left p-1 text-xs">Equipamento com Defeito</th>
-                <th className="text-left p-1 text-xs">Tombo</th>
-                <th className="text-left p-1 text-xs">Numero de Série</th>
+                <th className="text-left p-1 text-xs">Est. Trabalho</th>
                 <th className="text-left p-1 text-xs">Descricao</th>
-                <th className="text-left p-1 text-xs">Atribuido para</th>
+                <th className="text-left p-1 text-xs">Suporte</th>
                 <th className="text-left p-1 text-xs">Status</th>
-                <th className="text-left p-1 text-xs">Observação</th>
+                <th className="text-left p-1 text-xs">Data</th>
+
                 {exibirAcoes ? <th className="p-1 text-xs">Ações</th> : false}
 
             </tr>
@@ -38,20 +40,21 @@ export default function Tabela(props: TabelaProps) {
     // Renderiza os dados do chamado no tabela e formulario
     function renderizarDados() {
         return props.chamados?.map((chamado, i) => {
+            let h = chamado.createdAt
+            const dt = new Date(h)
+            const data = dt.getUTCDate()+ '/' + (dt.getMonth()+1) + '/' + dt.getUTCFullYear() + ' | ' + (dt.getHours()) + ' : ' + (dt.getMinutes())
+                   
+            
             return (
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
-                    <td className="text-left p-1 text-xs">{chamado.setor}</td>
                     <td className="text-left p-1 text-xs">{chamado.subsetor}</td>
                     <td className="text-left p-1 text-xs">{chamado.ilha}</td>
                     <td className="text-left p-1 text-xs">{chamado.estacaotrabalho}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipamentocomdefeito}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipamentotombo}</td>
-                    <td className="text-left p-1 text-xs">{chamado.equipamentonumeroserie}</td>
                     <td className="text-left p-1 text-xs">{chamado.descricao}</td>
                     <td className="text-left p-1 text-xs">{chamado.equipesuport}</td>
                     <td className="text-left p-1 text-xs">{chamado.status}</td>
-                    <td className="text-left p-1 text-xs">{chamado.observacao}</td>
+                    <td className="text-left p-1 text-xs">{data}</td>
                     {exibirAcoes ?  <th className="p-1 text-xs">{renderizarAcoes(chamado)}</th>: false}
                 </tr>
             )

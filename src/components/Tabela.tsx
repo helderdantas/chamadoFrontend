@@ -30,6 +30,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-1 text-xs">Atribuido para</th>
                 <th className="text-left p-1 text-xs">Status</th>
                 <th className="text-left p-1 text-xs">Observação</th>
+                <th className="text-left p-1 text-xs">Data</th>
                 {exibirAcoes ? <th className="p-1 text-xs">Ações</th> : false}
 
             </tr>
@@ -39,6 +40,10 @@ export default function Tabela(props: TabelaProps) {
     // Renderiza os dados do chamado no tabela e formulario
     function renderizarDados() {
         return props.chamados?.map((chamado, i) => {
+            let h = chamado.createdAt
+            const dt = new Date(h)
+            const data = dt.getUTCDate()+ '/' + (dt.getMonth()+1) + '/' + dt.getUTCFullYear() + ' | ' + (dt.getHours()) + ' : ' + (dt.getMinutes())
+              
             return (
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
@@ -53,6 +58,7 @@ export default function Tabela(props: TabelaProps) {
                     <td className="text-left p-1 text-xs">{chamado.equipesuport}</td>
                     <td className="text-left p-1 text-xs">{chamado.status}</td>
                     <td className="text-left p-1 text-xs">{chamado.observacao}</td>
+                    <td className="text-left p-1 text-xs">{data}</td>
                     {exibirAcoes ?  <th className="p-1 text-xs">{renderizarAcoes(chamado)}</th>: false}
                 </tr>
             )

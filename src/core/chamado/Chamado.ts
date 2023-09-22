@@ -1,3 +1,5 @@
+import { DateDataType, TextDataType } from "sequelize"
+
 export default class Chamado{
     #id: string
     #aberto:boolean
@@ -13,10 +15,10 @@ export default class Chamado{
     #equipesuport:string
     #status:string
     #observacao:string
-    #createAt:Date
-    #updateAt:Date
+    #createdAt:Date
+    #updatedAt:Date
 
-    constructor(aberto:boolean, nome:string, setor: string, subsetor: string, ilha: string, estacaotrabalho:string, equipamentocomdefeito:string, equipamentotombo: string, equipamentonumeroserie: string, descricao: string, equipesuport:string, status:string, observacao:string, id: string=null, createAt:Date, updateAt:Date){
+    constructor(aberto:boolean, nome:string, setor: string, subsetor: string, ilha: string, estacaotrabalho:string, equipamentocomdefeito:string, equipamentotombo: string, equipamentonumeroserie: string, descricao: string, equipesuport:string, status:string, observacao:string, id: string=null, createdAt:Date, updatedAt:Date){
         this.#aberto=aberto
         this.#nome=nome
         this.#setor=setor
@@ -30,8 +32,8 @@ export default class Chamado{
         this.#equipesuport=equipesuport
         this.#status=status
         this.#observacao=observacao
-        this.#createAt=createAt
-        this.#updateAt=updateAt
+        this.#createdAt=createdAt
+        this.#updatedAt=updatedAt
         this.#id=id
     }
 
@@ -94,12 +96,12 @@ export default class Chamado{
         return this.#observacao
     }
 
-    get createAt(){
-        return this.#createAt
+    get createdAt(){
+        return this.#createdAt
     }
 
-    get updateAt(){
-        return this.#updateAt
+    get updatedAt(){
+        return this.#updatedAt
     }
 
 }

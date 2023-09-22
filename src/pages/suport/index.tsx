@@ -32,7 +32,7 @@ export default function Suport() {
 
     useEffect(obterChamadosAbertos, [])
     useEffect(() => {
-        setInterval(obterChamadosAbertos, 30000);
+        setInterval(obterChamadosAbertos, 5000);
     }, [])
 
     function listItems(items, pageActual, limitItems) {
@@ -96,7 +96,7 @@ export default function Suport() {
                             <div className="mt-1 flex justify-end">
 
                                 <Rota rota="suport/edicao">Edição dos Chamados</Rota>
-                                <Rota rota="suport/relatorio" novaAbaa>Relatórios</Rota>
+                                <Rota rota="suport/relatorio" novaAba>Relatórios</Rota>
                                 <Rota rota="suport/equipamentos">Listar tipos de Equipamentos</Rota>
                                 <Rota rota="suport/equipeSuport">Listar Equipe de Suporte</Rota>
 

@@ -10,7 +10,7 @@ interface EntradaProps {
 }
 export default function Status(props: EntradaProps) {
     function renderiza() {
-        const STATUS = ['EM ATENTIMENTO', 'RESOLVIDO', 'NÃO RESOLVIDO', 'CANCELADO']
+        const STATUS = ['ATENDIMENTO', 'RESOLVIDO', 'NÃO RESOLVIDO', 'CANCELADO']
         return STATUS?.map((status, i) => {
             return (
                 <option key={i} value={status} >{status}</option>

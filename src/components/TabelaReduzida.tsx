@@ -24,6 +24,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-1 text-xs">Estação de Trabalho</th>
                 <th className="text-left p-1 text-xs">Atribuido para</th>
                 <th className="text-left p-1 text-xs">Status</th>
+                <td className="text-left p-1 text-xs">Data</td>
             </tr>
 
         )
@@ -32,6 +33,10 @@ export default function Tabela(props: TabelaProps) {
     function renderizarDados() {
         if(props.chamados){
         return props.chamados?.map((chamado, i) => {
+            let h = chamado.createdAt
+            const dt = new Date(h)
+            const data = dt.getUTCDate()+ '/' + (dt.getMonth()+1) + '/' + dt.getUTCFullYear() + ' | ' + (dt.getHours()) + ' : ' + (dt.getMinutes())
+              
             return (
                 <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
@@ -41,6 +46,7 @@ export default function Tabela(props: TabelaProps) {
                     <td className="text-left p-1 text-xs">{chamado.estacaotrabalho}</td>
                     <td className="text-left p-1 text-xs">{chamado.equipesuport}</td>
                     <td className="text-left p-1 text-xs">{chamado.status}</td>
+                    <td className="text-left p-1 text-xs">{data}</td>
                     </tr>
             )
 

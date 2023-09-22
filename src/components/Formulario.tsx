@@ -26,8 +26,8 @@ export default function Formulario(props: FormularioProps) {
     const repo: ControleRepositorio = new ColecaoControle()
     const id = props.chamado?.id
     const aberto = props.chamado?.aberto
-    const createAt = props.chamado?.createAt
-    const updateAt = props.chamado?.updateAt
+    const createdAt = props.chamado?.createdAt
+    const updatedAt = props.chamado?.updatedAt
     const [nome, setNome] = useState(props.chamado?.nome ?? '')
     const [setor, setSetor] = useState(props.chamado?.setor ?? '')
     const [subSetor, setSubSetor] = useState(props.chamado?.subsetor ?? '')
@@ -307,7 +307,7 @@ export default function Formulario(props: FormularioProps) {
 
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), estacaotrabalho.toUpperCase(), equipamentocomdefeito.toUpperCase(), equipamentotombo.toUpperCase(), equipamentonumeroserie.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createAt, updateAt))}>
+                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), estacaotrabalho.toUpperCase(), equipamentocomdefeito.toUpperCase(), equipamentotombo.toUpperCase(), equipamentonumeroserie.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createdAt, updatedAt))}>
                     {id ? 'Alterar' : 'Criar'}
 
                 </Botao>

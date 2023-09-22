@@ -33,8 +33,8 @@ export default function Formulario(props: FormularioProps) {
     const [controle, setControle] = useState<Controle>(Controle.vazio())
     const [qrcode, setQrcode] = useState('')
     const aberto = true
-    const createAt = null
-    const updateAt = null
+    const createdAt = null
+    const updatedAt = null
     const id = ''
 
 
@@ -91,7 +91,7 @@ export default function Formulario(props: FormularioProps) {
 
     function criarChamado() {
         if (controle) {
-            props.chamadoMudou(new Chamado(aberto, nome.toUpperCase(), setor, subSetor, ilha, estacaotrabalho, equipamentocomdefeito, equipamentotombo, equipamentonumeroserie, descricao.toUpperCase(), equipeSuport, status, observacao, id, createAt, updateAt))
+            props.chamadoMudou(new Chamado(aberto, nome.toUpperCase(), setor, subSetor, ilha, estacaotrabalho, equipamentocomdefeito, equipamentotombo, equipamentonumeroserie, descricao.toUpperCase(), equipeSuport, status, observacao, id, createdAt, updatedAt))
         }
 
     }
