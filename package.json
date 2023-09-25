@@ -20,7 +20,7 @@
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^2.6.2",
     "pg": "^8.7.3",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-datepicker": "^4.8.0",
     "react-dom": "18.2.0",
     "react-google-charts": "^4.0.0",
@@ -28,6 +28,7 @@
     "request": "^2.79.0",
     "rn-nodeify": "^10.3.0",
     "sequelize": "^6.21.0",
+    "use-sound": "^4.0.1",
     "usehooks-ts": "^2.6.0"
   },
   "devDependencies": {

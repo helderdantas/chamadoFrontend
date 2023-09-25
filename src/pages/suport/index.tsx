@@ -9,43 +9,45 @@ import Rota from "../../components/Rota";
 
 export default function Suport() {
 
-
-    function play(valor: number) {
-        let context = new AudioContext(),
-            oscillator = context.createOscillator();
-        oscillator.type = 'sine';
-        oscillator.connect(context.destination);
-        if (valor === 0) {
-            oscillator.start()
-        }
-        if (valor === 1) {
-            oscillator.stop()
-        }
-    }
-
     const repo: ChamadoRepositorio = new ColecaoChamado()
     const [chamado, setChamado] = useState<Chamado>(Chamado.vazio())
     const [chamados, setChamados] = useState<Chamado[]>([])
     const [chamadosAberto, setChamadosAberto] = useState<Chamado[]>([])
     const [visivel, setVisivel] = useState('tabela')
 
-
     useEffect(obterChamadosAbertos, [])
     useEffect(() => {
         setInterval(obterChamadosAbertos, 5000);
     }, [])
 
-    function listItems(items, pageActual, limitItems) {
-        let result = [];
-        return result;
-    };
+    let oscillator: OscillatorNode = null;
+    const teste = new AudioContext();
 
+    function refreshAlerta() {
+        /* 
+        const audio = new Audio("/alerta.mp3");
+        */
+        if (chamadosAberto.length > 0) {
+            if (oscillator === null) {
+                oscillator = teste.createOscillator();
+                oscillator.type = "sine";
+                oscillator.connect(teste.destination);
+                oscillator.start();
+            }
+        } else {
+            if (oscillator !== null) {
+                oscillator.stop();
+                oscillator = null;
+            }
+        }
+    }
 
     // Metodo que exibe na tabela todos os chamados abertos
     function obterChamadosAbertos() {
         repo.obterChamadosAbertos().then(chamados => {
             setChamados(chamados)
             setVisivel('tabela')
+            refreshAlerta()
         });
 
         repo.obterChamadosComStatusAberto().then(chamadosAbertos => {
