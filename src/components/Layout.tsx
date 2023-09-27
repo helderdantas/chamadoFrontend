@@ -1,6 +1,6 @@
 import Titulo from "./Titulo";
 import Image from 'next/image';
-import logo from '../../src/public/logotipoSeec.png';
+import logo from '../../public/logotipoSeec.png';
 
 
 // opt-out of image optimization, no-op

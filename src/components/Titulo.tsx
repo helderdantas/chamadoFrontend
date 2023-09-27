@@ -1,4 +1,4 @@
-import logo from '../public/logotipoSeec.png'
+import logo from '../../public/logotipoSeec.png'
 import Image from 'next/image'
 // Componente que criar o modelo de titulo
 export default function Titulo(props){
