@@ -43,10 +43,11 @@ export default function Tabela(props: TabelaProps) {
             let h = chamado.createdAt
             const dt = new Date(h)
             const data = dt.getUTCDate()+ '/' + (dt.getMonth()+1) + '/' + dt.getUTCFullYear() + ' | ' + (dt.getHours()) + ' : ' + (dt.getMinutes())
-                   
+            const rowClassName = `flex-wrap ${ i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'} ${chamado.status === 'ABERTO' ? 'bg-red-500' : ''}`;      
+
             
             return (
-                <tr key={chamado.id} className={`flex-wrap ${i % 2 === 0 ? 'bg-gray-300' : 'bg-gray-400'}`}>
+                <tr key={chamado.id} className={rowClassName}>
                     <td className="text-left p-1 text-xs">{chamado.nome}</td>
                     <td className="text-left p-1 text-xs">{chamado.subsetor}</td>
                     <td className="text-left p-1 text-xs">{chamado.ilha}</td>

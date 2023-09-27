@@ -17,7 +17,7 @@ export default function Suport() {
   // Carregue o som quando o componente for montado e limpe-o quando desmontado
   useEffect(() => {
     const sound = new Howl({
-      src: ["/Alertabomba.wav"], // Substitua pelo caminho correto para o seu arquivo de som
+      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
     });
 
     return () => {
@@ -28,7 +28,7 @@ export default function Suport() {
   // Verifique a condição e toque o som quando necessário
   useEffect(() => {
     const sound = new Howl({
-      src: ["/Alertabomba.wav"], // Substitua pelo caminho correto para o seu arquivo de som
+      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
     });
 
     if (chamadosAberto.length !== 0 || chamado.status === 'Aberto') {
