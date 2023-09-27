@@ -27,26 +27,17 @@ export default function Layout(props:LayoutProps) {
             text-gray-800 
             rounded-md
         `}>
-            <div className='columns-1'>
-                <div className={`grid justify-items-center`}>
+            <div className='flex flex-row items-center px-6 py-6'>
                 {image(logo)}
-               
+                <div className='flex flex-col px-3'>
+                    <h1 className="text-3xl text-center">
+                        Secretaria de Educação, do Esporte e Lazer do Estado do Rio Grande do Norte
+                    </h1>
+                    <h2 className="text-2xl text-center">
+                        Grupo de Processamento de Dados - GPD
+                    </h2>
                 </div>
-              
-                <h1 className="px-0 py-0 text-xl  text-center">
-                    Secretaria de Educação, do Esporte e Lazer do Estado do Rio Grande do Norte
-                </h1>
-                <h1 className="px-0 py-0 text-xl  text-center">
-                    Grupo de Processamento de Dados - GPD
-                </h1>
-                <h1 className="px-0 py-0 text-xl  text-center">
-                    Suporte
-                </h1>
-                                
-                       
             </div>
-            <hr className="border-2 border-gray-600"/>
-
             <Titulo>{props.titulo}</Titulo>
             <div className="p-2">
                 {props.children}

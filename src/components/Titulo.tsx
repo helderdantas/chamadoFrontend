@@ -4,13 +4,12 @@ import Image from 'next/image'
 export default function Titulo(props){
 
     return(
-        <>
-            
-            <h1 className="px-10 py-2 text-xl">
+        <> 
+            <hr className="border-2 border-gray-600"/>       
+            <h1 className="py-2 text-1xl text-center">
                     {props.children}
             </h1>
             <hr className="border-2 border-gray-600"/>
-        
         </>
     )
 
