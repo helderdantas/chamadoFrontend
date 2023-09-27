@@ -1,11 +1,6 @@
 import Titulo from "./Titulo";
-<<<<<<< HEAD
-import Image from "next/image";
-import logo from '../../src/public/logotipoSeec.png';
-=======
 import Image from 'next/image';
 import logo from '../../public/logotipoSeec.png';
->>>>>>> guiVersao
 
 
 // opt-out of image optimization, no-op
@@ -31,16 +26,6 @@ export default function Layout(props: LayoutProps) {
             bg-white text-gray-800 rounded-md
             
         `}>
-<<<<<<< HEAD
-            <div className='columns-1 flex items-center p-3 gap-5'>
-                <Image src={logo} alt="Logo" width={100} height={100} loader={customLoader} />
-                <div>
-                    <h1 className="text-3xl font-bold">Secretaria de Educação, do Esporte e Lazer do Rio Grande do Norte</h1>
-                    <h2 className="text-2xl font-bold">Grupo de Processamento e Dados - GPD</h2>
-                </div>
-            </div>
-            
-=======
             <div className='flex flex-row items-center px-6 py-6'>
                 {image(logo)}
                 <div className='flex flex-col px-3'>
@@ -52,7 +37,6 @@ export default function Layout(props: LayoutProps) {
                     </h2>
                 </div>
             </div>
->>>>>>> guiVersao
             <Titulo>{props.titulo}</Titulo>
 
             <div className="p-3">               

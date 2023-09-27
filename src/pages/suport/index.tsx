@@ -24,16 +24,6 @@ export default function Suport() {
       sound.unload();
     };
   }, []);
-
-<<<<<<< HEAD
-
-    // Metodo que exibe na tabela todos os chamados abertos
-    function obterChamadosAbertos() {
-        repo.obterChamadosAbertos().then(chamados => {
-            setChamados(chamados)
-            setVisivel('tabela')
-        });
-=======
   // Verifique a condição e toque o som quando necessário
   useEffect(() => {
     const sound = new Howl({
@@ -80,7 +70,6 @@ export default function Suport() {
 
     obterChamadosAbertos();
   }
->>>>>>> guiVersao
 
   // Metodo que abre um formulario vazio para criar um novo chamado
   function novoChamado() {
