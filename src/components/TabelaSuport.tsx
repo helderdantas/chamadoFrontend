@@ -3,8 +3,6 @@ import { IconeEdicao, IconeFinalizado } from "./Icones"
 
 import React from "react"
 
-  
-
 interface TabelaProps {
     chamados: Chamado[]
     chamadoSelecionado?: (chamado: Chamado) => void
@@ -16,7 +14,7 @@ interface TabelaProps {
 // Componente que criar o modelo de tabela
 export default function Tabela(props: TabelaProps) {
 
-    const exibirAcoes = props.chamadoSelecionado || props.chamadoFinalizado
+    const exibirAcoes = props.chamadoSelecionado || props.chamadoFinalizado;
 
     // Renderiza o cabelcaho nas pagina onde ele é chamado
     function renderizarCabecalho() {
@@ -26,7 +24,7 @@ export default function Tabela(props: TabelaProps) {
                 <th className="text-left p-1 text-xs">Setor</th>
                 <th className="text-left p-1 text-xs">Ilha Nº</th>
                 <th className="text-left p-1 text-xs">Est. Trabalho</th>
-                <th className="text-left p-1 text-xs">Descricao</th>
+                <th className="text-left p-1 text-xs">Descrição</th>
                 <th className="text-left p-1 text-xs">Suporte</th>
                 <th className="text-left p-1 text-xs">Status</th>
                 <th className="text-left p-1 text-xs">Data</th>
@@ -95,12 +93,11 @@ export default function Tabela(props: TabelaProps) {
         )
     }
 
-    return (
+    return (        
         <table className="w-full">
             <thead className={`
                 text-gray-200
-                bg-gradient-to-r from-gray-500 to-gray-600
-            
+                bg-gradient-to-r from-gray-500 to-gray-600            
             `}>
                 {renderizarCabecalho()}
             </thead>

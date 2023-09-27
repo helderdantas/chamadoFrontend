@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  
+
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}"
@@ -11,9 +11,12 @@ module.exports = {
     'lg:text-4xl',
   ],
 
-darkMode:'media',
-theme: {
-  extend: {},
-},
-plugins: [],
-}
+  darkMode: 'media',
+  theme: {
+    extend: {
+      fontFamily: {
+        'sans': ['Roboto', 'sans-serif'],
+      }
+    }
+  }
+};

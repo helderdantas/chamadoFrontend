@@ -20,34 +20,12 @@ export default function Suport() {
         setInterval(obterChamadosAbertos, 5000);
     }, [])
 
-    let oscillator: OscillatorNode = null;
-    const teste = new AudioContext();
-
-    function refreshAlerta() {
-        /* 
-        const audio = new Audio("/alerta.mp3");
-        */
-        if (chamadosAberto.length > 0) {
-            if (oscillator === null) {
-                oscillator = teste.createOscillator();
-                oscillator.type = "sine";
-                oscillator.connect(teste.destination);
-                oscillator.start();
-            }
-        } else {
-            if (oscillator !== null) {
-                oscillator.stop();
-                oscillator = null;
-            }
-        }
-    }
 
     // Metodo que exibe na tabela todos os chamados abertos
     function obterChamadosAbertos() {
         repo.obterChamadosAbertos().then(chamados => {
             setChamados(chamados)
             setVisivel('tabela')
-            refreshAlerta()
         });
 
         repo.obterChamadosComStatusAberto().then(chamadosAbertos => {

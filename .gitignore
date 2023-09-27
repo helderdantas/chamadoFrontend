@@ -7,3 +7,5 @@ build/
 # VSCode
 .vscode/
 
+# next
+.next/
