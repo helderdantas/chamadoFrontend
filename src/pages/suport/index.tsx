@@ -19,7 +19,7 @@ export default function Suport() {
   useEffect(() => {
     const soundAberto = new Howl({ src: ["/Luquinhas.wav"] });
     const soundAtendimento = new Howl({ src: ["/Alertabomba.wav"] });
-    const soundResolvido = new Howl({ src: ["/OutroAudio.wav"] }); // Substitua pelo caminho do áudio para "Resolvido"
+    const soundResolvido = new Howl({ src: ["/Axl.wav"] }); // Substitua pelo caminho do áudio para "Resolvido"
 
     if (chamado.status === "ABERTO" || chamado.aberto) {
       setTimeout(() => {
