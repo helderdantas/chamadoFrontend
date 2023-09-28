@@ -12,55 +12,57 @@ export default function Suport() {
   const [chamado, setChamado] = useState<Chamado>(Chamado.vazio());
   const [chamados, setChamados] = useState<Chamado[]>([]);
   const [chamadosAberto, setChamadosAberto] = useState<Chamado[]>([]);
-  const [visivel, setVisivel] = useState('tabela');
+  const [playSoundAtendimento, setPlaySoundAtendimento] = useState(false);
+  const [playSoundResolvido, setPlaySoundResolvido] = useState(false);
+  const [visivel, setVisivel] = useState("tabela");
 
-  // Carregue o som quando o componente for montado e limpe-o quando desmontado
   useEffect(() => {
-    const sound = new Howl({
-      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
-    });
+    const soundAberto = new Howl({ src: ["/Luquinhas.wav"] });
+    const soundAtendimento = new Howl({ src: ["/Alertabomba.wav"] });
+    const soundResolvido = new Howl({ src: ["/OutroAudio.wav"] }); // Substitua pelo caminho do áudio para "Resolvido"
 
-    return () => {
-      sound.unload();
-    };
-  }, []);
-  // Verifique a condição e toque o som quando necessário
-  useEffect(() => {
-    const sound = new Howl({
-      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
-    });
-
-    if (chamadosAberto.length !== 0 || chamado.status === 'Aberto') {
-      sound.play();
-
-      // Defina um temporizador para parar o som após 1 segundo
-      const timeoutId = setTimeout(() => {
-        sound.stop();
-      }, 2000); 
-
-      // Certifique-se de limpar o temporizador quando o componente é desmontado
-      return () => {
-        clearTimeout(timeoutId);
-        sound.stop();
-      };
-    } else {
-      sound.stop();
+    if (chamado.status === "ABERTO" || chamado.aberto) {
+      setTimeout(() => {
+        soundAberto.play();
+      }
+      , 2000);
+    } else if (chamado.status === "ATENDIMENTO" || chamado.aberto) {
+      setTimeout(() => {
+        soundResolvido.play();
+      }
+      , 2000);
+    } else  {
+      setTimeout(() => {
+        soundAtendimento.play();
+      }
+      , 2000);
     }
+  }, [chamado]);
+
+  // Restaura o estado de playSoundAtendimento quando os chamadosAberto mudam
+  useEffect(() => {
+    setPlaySoundAtendimento(false);
   }, [chamadosAberto]);
 
-  // Metodo que exibe na tabela todos os chamados abertos
+  // Restaura o estado de playSoundAtendimento quando os chamados mudam
+  useEffect(() => {
+    setPlaySoundAtendimento(false);
+    setPlaySoundResolvido(false);
+  }, [chamados]);
+
+  // Método que exibe na tabela todos os chamados abertos
   function obterChamadosAbertos() {
-    repo.obterChamadosAbertos().then(chamados => {
+    repo.obterChamadosAbertos().then((chamados) => {
       setChamados(chamados);
-      setVisivel('tabela');
+      setVisivel("tabela");
     });
 
-    repo.obterChamadosComStatusAberto().then(chamadosAbertos => {
+    repo.obterChamadosComStatusAberto().then((chamadosAbertos) => {
       setChamadosAberto(chamadosAbertos);
     });
   }
 
-  // Metodo para criar ou atualizar chamado
+  // Método para criar ou atualizar chamado
   async function salvarChamado(chamado: Chamado) {
     if (chamado.id) {
       await repo.atualizarChamado(chamado); // atualiza chamado existente
@@ -71,17 +73,17 @@ export default function Suport() {
     obterChamadosAbertos();
   }
 
-  // Metodo que abre um formulario vazio para criar um novo chamado
+  // Método que abre um formulário vazio para criar um novo chamado
   function novoChamado() {
     setChamado(Chamado.vazio());
-    setVisivel('form');
+    setVisivel("form");
   }
 
-  // Metodo para listar todos os chamados abertos e finalizados
+  // Método para listar todos os chamados abertos e finalizados
   function listarTodosChamados() {
-    repo.obterTodosChamados().then(chamados => {
+    repo.obterTodosChamados().then((chamados) => {
       setChamados(chamados);
-      setVisivel('tabela');
+      setVisivel("tabela");
     });
   }
 
@@ -102,25 +104,34 @@ export default function Suport() {
 
   return (
     <>
-      <div className={`
+      <div
+        className={`
         flex justify-center items-center min-h-screen max-h-full
         bg-gradient-to-r from-slate-400 to-slate-500 text-neutral-50
-      `}>
+      `}
+      >
         <Layout titulo="Chamados abertos">
-          {visivel === 'tabela' ? (
+          {visivel === "tabela" ? (
             <>
               <div className="mt-1 flex justify-end">
                 <Rota rota="suport/edicao">Edição dos Chamados</Rota>
-                <Rota rota="suport/relatorio" novaAba>Relatórios</Rota>
-                <Rota rota="suport/equipamentos">Listar tipos de Equipamentos</Rota>
-                <Rota rota="suport/equipeSuport">Listar Equipe de Suporte</Rota>
+                <Rota rota="suport/relatorio" novaAba>
+                  Relatórios
+                </Rota>
+                <Rota rota="suport/equipamentos">
+                  Listar tipos de Equipamentos
+                </Rota>
+                <Rota rota="suport/equipeSuport">
+                  Listar Equipe de Suporte
+                </Rota>
               </div>
               <Tabela chamados={chamados} />
             </>
-          ) : false}
+          ) : (
+            false
+          )}
         </Layout>
       </div>
     </>
   );
 }
-
