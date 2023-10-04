@@ -49,19 +49,6 @@ export default function Suport() {
           clearTimeout(timeoutId);
           sound.stop();
         };
-      } else if (chamados[i].aberto && chamados[i].status === 'ATENDIMENTO') {
-        sound2.play();
-
-        // Defina um temporizador para parar o som após 1 segundo
-        const timeoutId = setTimeout(() => {
-          sound2.stop();
-        }, 5000);
-
-        // Certifique-se de limpar o temporizador quando o componente é desmontado
-        return () => {
-          clearTimeout(timeoutId);
-          sound2.stop();
-        };
       }
       else {
         console.log(chamados[0].aberto, chamados[0].status);

@@ -37,7 +37,7 @@ export default function Tabela(props: TabelaProps) {
     }
     // Renderiza os dados do chamado no tabela e formulario
     function renderizarDados() {
-        return props.chamados?.map((chamado, i) => {
+        return props.chamados.map((chamado, i) => {
             let h = chamado.createdAt
             const dt = new Date(h)
             const data = dt.getUTCDate()+ '/' + (dt.getMonth()+1) + '/' + dt.getUTCFullYear() + ' | ' + (dt.getHours()) + ' : ' + (dt.getMinutes())
