@@ -22,10 +22,6 @@ export default function Formulario(props: FormularioProps) {
     // Componete que criar o modelo de formulario
     const repo: ControleRepositorio = new ColecaoControle()
     const [nome, setNome] = useState('')
-    const [setor, setSetor] = useState('')
-    const [subSetor, setSubSetor] = useState('')
-    const [ilha, setIlha] = useState('')
-    const [estacaotrabalho, setEstacaotrabalho] = useState('')
     const [equipamentocomdefeito, setEquipamentocomdefeito] = useState('')
     const [equipamentotombo, setEquipamentotombo] = useState('')
     const [equipamentonumeroserie, setEquipamentonumeroserie] = useState('')
@@ -34,20 +30,20 @@ export default function Formulario(props: FormularioProps) {
     const [status, setStatus] = useState('')
     const [observacao, setObservacao] = useState('')
     const [controle, setControle] = useState<Controle>(Controle.vazio())
-    const [qrcode, setQrcode] = useState('')
+    const [qrcode, setQrcode] = useState(null)
     const aberto = true
     const createAt = null
     const updateAt = null
     const id = ''
 
-
     useEffect(() => {
         buscarControle()
-    }, [qrcode])
+        preencherFormulario()
+    }, [qrcode, props.controle])
 
     useEffect(() => {
         preencherFormulario()
-    }, [equipamentocomdefeito])
+    }, [])
 
     async function buscarControle() {
         if (qrcode) {
@@ -58,20 +54,13 @@ export default function Formulario(props: FormularioProps) {
                 })
                 .catch(error => console.log(error))
                 .finally(() => { "aviso de fim de carregamento" })
+        } else {
+            setControle(props.controle)
         }
     }
 
     function preencherFormulario() {
-        console.log(controle)
-        console.log('depois')
-        console.log(props.controle)
-    
         if (controle) {
-            setSetor(controle.setor)
-            setSubSetor(controle.subsetor)
-            setIlha(controle.ilha)
-            setEstacaotrabalho(controle.baia)
-
             if (equipamentocomdefeito === "CPU") {
                 setEquipamentotombo(controle.cputombo)
                 setEquipamentonumeroserie(controle.cpunumeroserie)
@@ -92,11 +81,6 @@ export default function Formulario(props: FormularioProps) {
         }
 
         if(props.controle.setor){
-            console.log('entrei')
-            setSetor(props.controle.setor)
-            setSubSetor(props.controle.subsetor)
-            setIlha(props.controle.ilha)
-            setEstacaotrabalho(props.controle.baia)
             if (equipamentocomdefeito === "CPU") {
                 setEquipamentotombo(props.controle.cputombo)
                 setEquipamentonumeroserie(props.controle.cpunumeroserie)
@@ -119,8 +103,9 @@ export default function Formulario(props: FormularioProps) {
     }
 
     function criarChamado() {
+        preencherFormulario()
         if (controle) {
-            props.chamadoMudou(new Chamado(aberto, nome.toUpperCase(), setor, subSetor, ilha, estacaotrabalho, equipamentocomdefeito, equipamentotombo, equipamentonumeroserie, descricao.toUpperCase(), equipeSuport, status, observacao, id, createAt, updateAt))
+            props.chamadoMudou(new Chamado(aberto, nome.toUpperCase(), controle.setor, controle.subsetor, controle.ilha, controle.baia, equipamentocomdefeito, equipamentotombo, equipamentonumeroserie, descricao.toUpperCase(), equipeSuport, status, observacao, id, createAt, updateAt))
         }
 
     }
@@ -144,7 +129,7 @@ export default function Formulario(props: FormularioProps) {
                         {'CODIGO'}
                     </label>
                     <input
-                        type={'text'}
+                        type={'number'}
                         value={qrcode}
                         readOnly={false}
                         onChange={atualizarCodigo}
@@ -172,11 +157,14 @@ export default function Formulario(props: FormularioProps) {
             />
 
             <div className="mt-5 flex justify-end">
+
+                {(nome !== "" && qrcode > 0) ? (
                 <Botao cor="blue" className="mr-2"
                     onClick={criarChamado}>
                     {'Criar'}
 
                 </Botao>
+                ): false}
                 <Botao cor="blue" onClick={props.cancelado}>
                     Cancelar
                 </Botao>

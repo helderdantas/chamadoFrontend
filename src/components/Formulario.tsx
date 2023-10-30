@@ -42,6 +42,22 @@ export default function Formulario(props: FormularioProps) {
     const [observacao, setObservacao] = useState(props.chamado?.observacao ?? null)
     const [controle, setControle] = useState<Controle>(Controle.vazio())
     const [qrcode, setQrcode] = useState('')
+    const [formularioValido, setFormularioValido] = useState(false);
+    const [nomeValido, setNomeValido] = useState(false);
+    const [estacaoTrabalhoValida, setEstacaoTrabalhoValida] = useState(false);
+
+    const validarFormulario = () => {
+        if (nome !== '' && estacaotrabalho !== '') {
+            setNomeValido(true);
+            setEstacaoTrabalhoValida(true);
+        }
+    
+        if (nomeValido && estacaoTrabalhoValida) {
+          setFormularioValido(true);
+        } else {
+          setFormularioValido(false);
+        }
+    };
 
 
     // console.log(props.controle.valueOf.length)
@@ -307,7 +323,8 @@ export default function Formulario(props: FormularioProps) {
 
             <div className="mt-5 flex justify-end">
                 <Botao cor="blue" className="mr-2"
-                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), estacaotrabalho.toUpperCase(), equipamentocomdefeito.toUpperCase(), equipamentotombo.toUpperCase(), equipamentonumeroserie.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createdAt, updatedAt))}>
+                    onClick={() => props.chamadoMudou?.(new Chamado(aberto, nome.toUpperCase(), setor.toUpperCase(), subSetor.toUpperCase(), ilha.toUpperCase(), estacaotrabalho.toUpperCase(), equipamentocomdefeito.toUpperCase(), equipamentotombo.toUpperCase(), equipamentonumeroserie.toUpperCase(), descricao.toUpperCase(), equipeSuport.toUpperCase(), status, observacao.toUpperCase(), id, createdAt, updatedAt))}
+                    disabled={formularioValido !== false}>
                     {id ? 'Alterar' : 'Criar'}
 
                 </Botao>
