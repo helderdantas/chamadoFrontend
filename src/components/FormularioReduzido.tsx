@@ -6,6 +6,7 @@ import EntradaListaEquipamento from "./EntradaListaEquipamento"
 import ColecaoControle from "../backend/db/ColecaoControle";
 import Controle from "../core/controle/Controle";
 import ControleRepositorio from "../core/controle/ControleRepositorio";
+import { set } from "mongoose";
 
 
 
@@ -56,6 +57,7 @@ export default function Formulario(props: FormularioProps) {
                 .finally(() => { "aviso de fim de carregamento" })
         } else {
             setControle(props.controle)
+            setCodigo(Number(props.parametro))
         }
     }
 
