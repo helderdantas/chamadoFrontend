@@ -6,7 +6,6 @@ import Chamado from "../../core/chamado/Chamado";
 import ChamadoRepositorio from "../../core/chamado/ChamadoRepositorio";
 import Rota from "../../components/Rota";
 import { Howl } from "howler";
-import { where } from "sequelize";
 
 export default function Suport() {
   const repo: ChamadoRepositorio = new ColecaoChamado();
@@ -18,44 +17,36 @@ export default function Suport() {
   // Carregue o som quando o componente for montado e limpe-o quando desmontado
   useEffect(() => {
     const sound = new Howl({
-      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
+      src: ["/Luquinhas.wav"], // Som padrão para outros casos
     });
 
     return () => {
       sound.unload();
     };
   }, []);
+
   // Verifique a condição e toque o som quando necessário
   useEffect(() => {
-    const sound = new Howl({
-      src: ["/Luquinhas.wav"], // Substitua pelo caminho correto para o seu arquivo de som
-    });
-    const sound2 = new Howl({
-      src: ["/Axl.wav"], // Substitua pelo caminho correto para o seu arquivo de som
-    });
+    // Verifique se há um chamado com status "ABERTO" e toque o som "Luquinhas.wav"
+    if (chamados.some(chamado => chamado.status === 'ABERTO')) {
+      const sound = new Howl({
+        src: ["/Luquinhas.wav"],
+      });
 
-    chamados.map((chamado, i) => {
+      sound.play();
 
-      if (chamados[i].aberto && chamados[i].status === 'ABERTO') {
-        sound.play();
-
-        // Defina um temporizador para parar o som após 1 segundo
-        const timeoutId = setTimeout(() => {
-          sound.stop();
-        }, 2000);
-
-        // Certifique-se de limpar o temporizador quando o componente é desmontado
-        return () => {
-          clearTimeout(timeoutId);
-          sound.stop();
-        };
-      }
-      else {
-        console.log(chamados[0].aberto, chamados[0].status);
+      // Defina um temporizador para parar o som após 1 segundo
+      const timeoutId = setTimeout(() => {
         sound.stop();
-      }
-    });
-  }, [chamadosAberto]);
+      }, 4000);
+
+      // Certifique-se de limpar o temporizador quando o componente é desmontado
+      return () => {
+        clearTimeout(timeoutId);
+        sound.stop();
+      };
+    }
+  }, [chamados]);
 
   // Metodo que exibe na tabela todos os chamados abertos
   function obterChamadosAbertos() {
