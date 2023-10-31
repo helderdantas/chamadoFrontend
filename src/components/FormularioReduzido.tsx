@@ -30,7 +30,7 @@ export default function Formulario(props: FormularioProps) {
     const [status, setStatus] = useState('')
     const [observacao, setObservacao] = useState('')
     const [controle, setControle] = useState<Controle>(Controle.vazio())
-    const [qrcode, setQrcode] = useState(null)
+    const [codigo, setCodigo] = useState(null)
     const aberto = true
     const createAt = null
     const updateAt = null
@@ -39,15 +39,15 @@ export default function Formulario(props: FormularioProps) {
     useEffect(() => {
         buscarControle()
         preencherFormulario()
-    }, [qrcode, props.controle])
+    }, [codigo, props.controle])
 
     useEffect(() => {
         preencherFormulario()
     }, [])
 
     async function buscarControle() {
-        if (qrcode) {
-            await fetch(`${process.env.NEXT_PUBLIC_URL_2}listarControle/` + qrcode)
+        if (codigo) {
+            await fetch(`${process.env.NEXT_PUBLIC_URL_2}listarControle/` + codigo)
                 .then(response => response.json())
                 .then(data => {
                     setControle(data)
@@ -111,7 +111,7 @@ export default function Formulario(props: FormularioProps) {
     }
 
     const atualizarCodigo = (e) => {
-        setQrcode(e.target.value)
+        setCodigo(e.target.value)
     }
 
 
@@ -130,7 +130,7 @@ export default function Formulario(props: FormularioProps) {
                     </label>
                     <input
                         type={'number'}
-                        value={qrcode}
+                        value={codigo}
                         readOnly={false}
                         onChange={atualizarCodigo}
                         className={`
@@ -158,7 +158,7 @@ export default function Formulario(props: FormularioProps) {
 
             <div className="mt-5 flex justify-end">
 
-                {(nome !== "" && qrcode > 0) ? (
+                {(nome !== "" && codigo > 0) ? (
                 <Botao cor="blue" className="mr-2"
                     onClick={criarChamado}>
                     {'Criar'}
