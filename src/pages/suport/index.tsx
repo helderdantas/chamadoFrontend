@@ -14,10 +14,16 @@ export default function Suport() {
   const [chamadosAberto, setChamadosAberto] = useState<Chamado[]>([]);
   const [visivel, setVisivel] = useState('tabela');
 
+  const getRandomAudio = () => {
+    const audios = ["/Luquinhas.wav", "/Powerranger.wav", "/Laerte.wav"];
+    const randomIndex = Math.floor(Math.random() * audios.length);
+    return audios[randomIndex];
+  };
+
   // Carregue o som quando o componente for montado e limpe-o quando desmontado
   useEffect(() => {
     const sound = new Howl({
-      src: ["/Luquinhas.wav"], // Som padrão para outros casos
+      src: [getRandomAudio()], // Escolha aleatória do áudio
     });
 
     return () => {
@@ -27,15 +33,15 @@ export default function Suport() {
 
   // Verifique a condição e toque o som quando necessário
   useEffect(() => {
-    // Verifique se há um chamado com status "ABERTO" e toque o som "Luquinhas.wav"
+    // Verifique se há um chamado com status "ABERTO" e toque um áudio aleatório
     if (chamados.some(chamado => chamado.status === 'ABERTO')) {
       const sound = new Howl({
-        src: ["/Luquinhas.wav"],
+        src: [getRandomAudio()], // Escolha aleatória do áudio
       });
 
       sound.play();
 
-      // Defina um temporizador para parar o som após 1 segundo
+      // Defina um temporizador para parar o som após 4 segundos
       const timeoutId = setTimeout(() => {
         sound.stop();
       }, 4000);
